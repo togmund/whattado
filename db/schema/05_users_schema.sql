@@ -6,8 +6,7 @@ CREATE TABLE "users" (
   "password" VARCHAR(255) NOT NULL,
   "avatar" VARCHAR(500) NOT NULL,
   "group_id" INTEGER,
-  "time_id" INTEGER,
-  "family" BOOLEAN
+  "time_id" INTEGER
 );
 
 ALTER TABLE "users" ADD FOREIGN KEY ("group_id") REFERENCES "groups" ("group_id");
