@@ -37,46 +37,58 @@
     <section class="section">
       <form class="whattado container" method=GET action="/userTodos">
         <!-- Try using flat button from materialize -->
-        <div class="section">
-          <button class="waves-effect waves-light btn-large red lighten-3">
+        <div class="row section times">
+          <button class="col s3 waves-effect waves-light btn-large red lighten-3" name="1h" value="true">
             1 Hour
           </button>
-          <button class="waves-effect waves-light btn-large red lighten-3">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="3h" value="false">
             3 Hours
           </button>
-          <button class="waves-effect waves-light btn-large red lighten-3">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="6h" value="false">
             6 Hours
           </button>
-          <button class="waves-effect waves-light btn-large red lighten-3">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="24h" value="false">
             1 Day
           </button>
         </div>
-        <div class="section">
-          <button class="waves-effect waves-light btn-large red accent-2">
-            Me Time
+        <div class="row section groups">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="solo" value="false">
+            Solo
           </button>
-          <button class="waves-effect waves-light btn-large red accent-2">
-            Couple Time
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="couple" value="false">
+            Couple
           </button>
-          <button class="waves-effect waves-light btn-large red accent-2">
-            Friends Time
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="group" value="false">
+            Group
           </button>
-          <button class="waves-effect waves-light btn-large red accent-2">
-            Family Time
+          <button class="col s3 waves-effect waves-light btn-large red accent-2" name="family" value="true">
+            Family
           </button>
         </div>
-        <div class="section">
-          <a class="btn-floating btn-large waves-effect waves-light red accent-4"><i
-              class="material-icons">movie_filter</i></a>
-          <a class="btn-floating btn-large waves-effect waves-light indigo darken-2"><i
-              class="material-icons">menu_book</i></a>
-          <a class="btn-floating btn-large waves-effect waves-light teal darken-3"><i
-              class="material-icons">shopping_basket</i></a>
-          <a class="btn-floating btn-large waves-effect waves-light amber darken-4"><i
-              class="material-icons">restaurant</i></a>
+        <div class="row section types">
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light red accent-4" name="movies" value="true"><i
+                class="material-icons">movie_filter</i></a>
+          </div>
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light white" name="books" value="false"><i
+                class="indigo-text text-darken-2 material-icons">menu_book</i></a>
+          </div>
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light teal darken-3" name="shopping" value="true"><i
+                class="material-icons">shopping_basket</i></a>
+          </div>
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light amber darken-4" name="restaurants" value="true"><i
+                class="material-icons">restaurant</i></a>
+          </div>
         </div>
-        <button class="waves-effect waves-light btn-large deep-purple darken-1 pulse" type="submit">whattado<i
-            class="material-icons right">assignment</i></button>
+        <div class="row section submit">
+          <button class="col s6 offset-s3 waves-effect waves-light btn-large deep-purple darken-1 pulse" type="submit">
+            whattado
+          </button>
+        </div>
+
       </form>
     </section>
 
