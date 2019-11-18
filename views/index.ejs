@@ -82,12 +82,40 @@
 
     <section class="todos section container col s12">
     </section>
+    <!--Search button-->
+    <section>
+      <div class="fixed-action-btn click-to-toggle vertical ">
+
+        <a class="btn-floating btn-large click-to-toggle green " id="new-search">
+          <i class="large material-icons">add</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating btn-large waves-effect waves-light red accent-4"><i
+                class="material-icons">movie_filter</i></a></li>
+          <li><a class="btn-floating btn-large waves-effect waves-light indigo darken-2"><i
+                class="material-icons">menu_book</i></a>
+          </li>
+          <li><a class="btn-floating btn-large waves-effect waves-light teal darken-3"><i
+                class="material-icons">shopping_basket</i></a>
+          </li>
+          <li><a class="btn-floating btn-large waves-effect waves-light amber darken-4"><i
+                class="material-icons">restaurant</i></a>
+          </li>
+        </ul>
+        <form class="search-form" style="padding: 3px;
+          float: left;">
+          <input type="search" placeholder="Search...">
+        </form>
+      </div>
+      </div>
+    </section>
 
   </main>
 
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/public/scripts/user-todo.js"></script>
+  <script type="text/javascript" src="/scripts/user-todo.js"></script>
+  <script type="text/javascript" src="/scripts/search.js"></script>
 </body>
 
 </html>
