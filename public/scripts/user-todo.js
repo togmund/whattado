@@ -1,8 +1,6 @@
 $(document).ready(() => {
 
   $("form.whattado.container").on("submit", function(event) {
-    console.log(event);
-
     event.preventDefault();
 
     $.ajax("/userTodos",{
