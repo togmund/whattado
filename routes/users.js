@@ -8,6 +8,13 @@
 const express = require('express');
 const router  = express.Router();
 
+
+//Added this get route as practice
+router.get("/login/:id", (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect("/");
+})
+
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
@@ -23,3 +30,4 @@ module.exports = (db) => {
   });
   return router;
 };
+
