@@ -1,7 +1,7 @@
-INSERT INTO types (name, img, color, api_endpoint) VALUES ('movies & shows', 'movie_filter', '#c70d3a', 'something');
+INSERT INTO types (name, img, color, api_endpoint) VALUES ('movies & shows', 'movie_filter', 'red accent-4', 'something');
 
-INSERT INTO types (name, img, color, api_endpoint) VALUES ('restaurants & cafes', 'restaurant', '#ed5107', 'another thing');
+INSERT INTO types (name, img, color, api_endpoint) VALUES ('books', 'menu_book', 'indigo darken-2', 'different');
 
-INSERT INTO types (name, img, color, api_endpoint) VALUES ('shopping', 'shopping_basket', '#230338', 'quelque chose de pareil');
+INSERT INTO types (name, img, color, api_endpoint) VALUES ('shopping', 'shopping_basket', 'teal darken-3', 'quelque chose de pareil');
 
-INSERT INTO types (name, img, color, api_endpoint) VALUES ('books', 'menu_book', '#02383c', 'different');
+INSERT INTO types (name, img, color, api_endpoint) VALUES ('restaurants & cafes', 'restaurant', 'amber darken-4', 'another thing');
