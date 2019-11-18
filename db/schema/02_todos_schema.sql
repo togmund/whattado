@@ -4,7 +4,7 @@ CREATE TABLE "todos" (
   "name" VARCHAR(255) NOT NULL,
   "type_id" INTEGER NOT NULL,
   "api_id" INTEGER,
-  "api_..." INTEGER
+  "api_sth" INTEGER
 );
 
 ALTER TABLE "todos" ADD FOREIGN KEY ("type_id") REFERENCES "types" ("type_id");
