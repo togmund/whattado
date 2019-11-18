@@ -24,74 +24,78 @@
   </head>
 
   <body>
-    <nav style="background-color: #940a37">
-      <h1>whattado</h1>
+    <!-- Navbar -->
+    <nav class="pink darken-4">
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo left">whattado</a>
+        <ul class="right">
+          <li><a>login</a></li>
+        </ul>
+      </div>
     </nav>
 
     <main>
+      <!-- Whattado Button Form -->
       <section>
-        <form class="whattado" method="GET" action="/userTodos">
+        <form class="whattado container" method="GET" action="/userTodos">
           <div>
-            <div>
-              <a class="btn-floating btn-large waves-effect waves-light "
-                ><i class="material-icons" style="background-color:#c70d3a  "
-                  >movie_filter</i
-                ></a
-              >
+            <a class="btn-floating btn-large waves-effect waves-light "
+              ><i class="material-icons" style="background-color:#c70d3a  "
+                >movie_filter</i
+              ></a
+            >
 
-              <a class="btn-floating btn-large waves-effect waves-light"
-                ><i class="material-icons" style="background-color:#ed5107 "
-                  >restaurant</i
-                ></a
-              >
+            <a class="btn-floating btn-large waves-effect waves-light"
+              ><i class="material-icons" style="background-color:#ed5107 "
+                >restaurant</i
+              ></a
+            >
 
-              <a class="btn-floating btn-large waves-effect waves-light"
-                ><i class="material-icons" style="background-color:#230338 "
-                  >shopping_basket</i
-                ></a
-              >
+            <a class="btn-floating btn-large waves-effect waves-light"
+              ><i class="material-icons" style="background-color:#230338 "
+                >shopping_basket</i
+              ></a
+            >
 
-              <a class="btn-floating btn-large waves-effect waves-light"
-                ><i class="material-icons" style="background-color:#02383c "
-                  >menu_book</i
-                ></a
-              >
-            </div>
-            <div>
-              <button class="waves-effect waves-light btn-large red lighten-3">
-                1 Hour
-              </button>
-              <button class="waves-effect waves-light btn-large red lighten-3">
-                3 Hours
-              </button>
-              <button class="waves-effect waves-light btn-large red lighten-3">
-                6 Hours
-              </button>
-              <button class="waves-effect waves-light btn-large red lighten-3">
-                1 Day
-              </button>
-            </div>
+            <a class="btn-floating btn-large waves-effect waves-light"
+              ><i class="material-icons" style="background-color:#02383c "
+                >menu_book</i
+              ></a
+            >
+          </div>
 
-            <div>
-              <button class="waves-effect waves-light btn-large red accent-2">
-                Me Time
-              </button>
+          <!-- Try using flat button from materialize -->
+          <div class="red lighten-3">
+            <button class="waves-effect waves-light btn-large red lighten-3">
+              1 Hour
+            </button>
+            <button class="waves-effect waves-light btn-large red lighten-3">
+              3 Hours
+            </button>
+            <button class="waves-effect waves-light btn-large red lighten-3">
+              6 Hours
+            </button>
+            <button class="waves-effect waves-light btn-large red lighten-3">
+              1 Day
+            </button>
+          </div>
 
-              <button class="waves-effect waves-light btn-large red accent-2">
-                Couple Time
-              </button>
-
-              <button class="waves-effect waves-light btn-large red accent-2">
-                Friends Time
-              </button>
-
-              <button class="waves-effect waves-light btn-large red accent-2">
-                Family Time
-              </button>
-            </div>
+          <div class="red accent-2">
+            <button class="waves-effect waves-light btn-large red accent-2">
+              Me Time
+            </button>
+            <button class="waves-effect waves-light btn-large red accent-2">
+              Couple Time
+            </button>
+            <button class="waves-effect waves-light btn-large red accent-2">
+              Friends Time
+            </button>
+            <button class="waves-effect waves-light btn-large red accent-2">
+              Family Time
+            </button>
           </div>
           <button
-            class="waves-effect waves-light btn-large pulse"
+            class="waves-effect waves-light btn-large pulse light-green accent-4"
             type="submit"
           >
             whattado<i class="material-icons right">assignment</i>
