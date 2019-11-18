@@ -18,7 +18,7 @@ module.exports = (db) => {
     ;`)
       .then(data => {
         const userTodos = data.rows;
-        res.json({userTodos});
+        res.json(userTodos);
       })
       .catch(err => {
         res
