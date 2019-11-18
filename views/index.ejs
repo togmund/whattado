@@ -1,50 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Home Page</title>
 
-<head>
-  <title>Home Page</title>
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <body>
+    <nav style="background-color: #940a37">
+      <h1>whattado</h1>
+    </nav>
 
-</head>
+    <main>
+      <section>
+        <form class="whattado" method="GET" action="/userTodos">
+          <div>
+            <div>
+              <a class="btn-floating btn-large waves-effect waves-light "
+                ><i class="material-icons" style="background-color:#c70d3a  "
+                  >movie_filter</i
+                ></a
+              >
 
-<body>
-  <nav>
-    <h1>whattado</h1>
-  </nav>
+              <a class="btn-floating btn-large waves-effect waves-light"
+                ><i class="material-icons" style="background-color:#ed5107 "
+                  >restaurant</i
+                ></a
+              >
 
-  <main>
-    <section>
-      <form class="whattado" method=GET action="/userTodos">
-        <div>
-        <a class="btn-floating btn-large waves-effect waves-light "><i class="material-icons" style="background-color:#c70d3a  ">movie_filter</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light"
+                ><i class="material-icons" style="background-color:#230338 "
+                  >shopping_basket</i
+                ></a
+              >
 
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons" style="background-color:#ed5107 ">restaurant</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light"
+                ><i class="material-icons" style="background-color:#02383c "
+                  >menu_book</i
+                ></a
+              >
+            </div>
+            <div>
+              <button class="waves-effect waves-light btn-large red lighten-3">
+                1 Hour
+              </button>
+              <button class="waves-effect waves-light btn-large red lighten-3">
+                3 Hours
+              </button>
+              <button class="waves-effect waves-light btn-large red lighten-3">
+                6 Hours
+              </button>
+              <button class="waves-effect waves-light btn-large red lighten-3">
+                1 Day
+              </button>
+            </div>
 
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons" style="background-color:#230338 ">shopping_basket</i></a>
+            <div>
+              <button class="waves-effect waves-light btn-large red accent-2">
+                Me Time
+              </button>
 
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons" style="background-color:#02383c ">menu_book</i></a>
-      </div>
-        <button class="waves-effect waves-light btn-large pulse" type="submit">whattado<i
-            class="material-icons right">assignment</i></button>
-      </form>
-    </section>
-  </main>
+              <button class="waves-effect waves-light btn-large red accent-2">
+                Couple Time
+              </button>
 
-  <!--JavaScript at end of body for optimized loading-->
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/public/scripts/app.js"></script>
-</body>
+              <button class="waves-effect waves-light btn-large red accent-2">
+                Friends Time
+              </button>
 
+              <button class="waves-effect waves-light btn-large red accent-2">
+                Family Time
+              </button>
+            </div>
+          </div>
+          <button
+            class="waves-effect waves-light btn-large pulse"
+            type="submit"
+          >
+            whattado<i class="material-icons right">assignment</i>
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/public/scripts/app.js"></script>
+  </body>
 </html>
