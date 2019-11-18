@@ -1,14 +1,13 @@
 $(document).ready(() => {
 
   $("form.whattado.container").on("submit", function(event) {
-    console.log(event);
-
     event.preventDefault();
 
     $.ajax("/userTodos",{
       method: "GET",
       data: $(this).serialize()
     }).done((userTodos) => {
+      console.log(userTodos);
       for(userTodo of userTodos) {
         $(`"<article class="card horizontal ${userTodo.user_todo_id}">"`).appendTo($(".todo.container"));
 
