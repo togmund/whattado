@@ -14,7 +14,8 @@ module.exports = (db) => {
     SELECT u_t.user_todo_id, td.name AS todo_name, t.name AS type_name, done_count
     FROM user_todos u_t
     JOIN todos td ON td.todo_id = u_t.user_todo_id
-    JOIN types t ON t.type_id = td.todo_id
+    JOIN types t ON t.type_id = td.type_id
+    WHERE u_t.done = FALSE
     ;`)
       .then(data => {
         const userTodos = data.rows;
