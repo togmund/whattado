@@ -4,4 +4,8 @@ $(document).ready(function () {
   $("#new-search").on("click",() => {
     $(".search-form").slideToggle("slow");
   })
+  $(".search-form").on("submit",() => {
+    event.preventDefault();
+
+  })
 });
