@@ -10,20 +10,26 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`
-    SELECT *
-    FROM todos
-    JOIN types ON todos.type_id = types.type_id
-    ;`)
-      .then(data => {
-        const allTodos = data.rows;
-        res.json({ allTodos });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    console.log(req.params);
+    // console.log(res);
+  //   let queryString =`
+  //   SELECT todos.name as todo_name,types.name as type_name
+  //   FROM todos
+  //   JOIN types ON todos.type_id = types.type_id
+  //   WHERE todos.name ILIKE '%$1%'
+  //   ;`;
+  //   let values = [req.body]
+  //   console.log(values);
+  //   db.query(queryString,values)
+  //     .then(data => {
+  //       const allTodos = data.rows;
+  //       res.json({ allTodos });
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
   });
   return router;
 };
