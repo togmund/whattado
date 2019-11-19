@@ -24,7 +24,6 @@ module.exports = (db) => {
     JOIN todos td ON td.todo_id = u_t.user_todo_id
     JOIN types t ON t.type_id = td.type_id
     ;`
-
     db.query(queryFormat)
       .then(data => {
         const userTodos = data.rows;
