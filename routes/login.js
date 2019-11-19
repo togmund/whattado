@@ -10,7 +10,9 @@ const router = express.Router();
 
 module.exports = () => {
   router.post("/", (req, res) => {
-    req.session.user_id = req.params.id;
+    req.session.userId = req.body.loginId
+    console.log("current user is:",req.session.userId )
+    res.redirect("/");
   });
   return router;
 };
