@@ -30,9 +30,12 @@ module.exports = db => {
     JOIN todos td ON td.todo_id = u_t.user_todo_id
     JOIN types t ON t.type_id = td.type_id
     WHERE t.name IN (${psFriendly})
+    AND u_t.user_id = $1
     ORDER BY todo_name DESC
     ;`
-    db.query(queryFormat)
+    console.log(req.session.user_id);
+    const injectionProtection = [req.session.user_id]
+    db.query(queryFormat, injectionProtection)
       .then(data => {
         const userTodos = data.rows;
         res.json(userTodos);

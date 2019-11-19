@@ -9,7 +9,6 @@ $(document).ready(function() {
     $.ajax("/allTodos",{
       method: "GET"
     }).done((allTodos) => {
-      console.log(allTodos);
       for (todo of allTodos) {
         const $todoContainer = $(`.todos.container`);
 
@@ -22,8 +21,7 @@ $(document).ready(function() {
 
         const $cardAction = $(`<span>`).addClass(`card-action right`);
         const todoId = todo.todo_id;
-        const $actionLink = $(`<a>`).addClass(`right`).attr(`data`, `${todo.todo_id}`).text('do me').click(()=> {
-          console.log(todoId);
+        const $actionLink = $(`<a>`).addClass(`right`).text('do me').click(()=> {
           $.ajax("/userTodos/:id/add", {
             method:"POST",
             data:{todoId: todoId}
