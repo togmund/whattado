@@ -27,9 +27,7 @@ $(document).ready(() => {
       method: "GET",
       data: $formValues
     }).done((userTodos) => {
-      const toBeDone = userTodos.filter(u => !u.done);
-
-      for (const userTodo of toBeDone) {
+      for (const userTodo of userTodos) {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal`);
@@ -37,8 +35,8 @@ $(document).ready(() => {
 
         const $cardContent = $(`<span>`).addClass(`card-content`);
         const $todoName = $(`<p>`).text(userTodo.todo_name);
-        const $typeName = $(`<p>`).text(userTodo.type_name);
-        const $doneCount = $(`<p>`).text(userTodo.done_count);
+        const $typeTag = $(`<i>`).addClass(`material-icons`).addClass(`${userTodo.type_color}-text`).addClass(`text-${userTodo.type_color_accent}`).text(userTodo.type_img);
+        const $doneCount = $(`<p>`).addClass("right").text(userTodo.done_count);
 
         const $cardAction = $(`<span>`).addClass(`card-action right`);
         const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
@@ -47,7 +45,7 @@ $(document).ready(() => {
 
         $cardStacked.append($cardContent);
         $cardContent.append($todoName);
-        $cardContent.append($typeName);
+        $cardContent.append($typeTag);
         $cardContent.append($doneCount);
 
         $cardStacked.append($cardAction);
