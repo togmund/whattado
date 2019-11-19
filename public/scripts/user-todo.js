@@ -2,9 +2,22 @@ $(document).ready(() => {
 
   $("form.whattado.container").on("submit", function(event) {
     event.preventDefault();
+    const $1h = $(this).children().children(".1h").val()
+    const $3h = $(this).children().children(".3h").val()
+    const $6h = $(this).children().children(".6h").val()
+    const $24h = $(this).children().children(".24h").val()
+
+    const $solo = $(this).children().children(".solo").val()
+    const $duo = $(this).children().children(".duo").val()
+    const $group = $(this).children().children(".group").val()
+    const $family = $(this).children().children(".family").val()
+
+    const $formValues = { $1h, $3h, $6h, $24h, $solo, $duo, $group, $family };
+    console.log($formValues)
 
     $.ajax("/userTodos",{
-      method: "GET"
+      method: "GET",
+      data: $formValues
     }).done((userTodos) => {
       const toBeDone = userTodos.filter( u => !u.done );
 
