@@ -6,9 +6,9 @@ $(document).ready(() => {
     $.ajax("/userTodos",{
       method: "GET"
     }).done((userTodos) => {
-      const toBeDone = userTodos.filter( u => !u.done );
-
-      for(const userTodo of toBeDone) {
+      // console.log(userTodos);
+      // // const toBeDone = userTodos.filter( () => )
+      for(userTodo of userTodos) {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal`);
@@ -20,7 +20,16 @@ $(document).ready(() => {
         const $doneCount = $(`<p>`).text(userTodo.done_count);
 
         const $cardAction = $(`<span>`).addClass(`card-action right`);
-        const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
+        // const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
+        const userTodosId = userTodo.user_todo_id;
+        const $actionLink = $(`<a>`).addClass(`right`).text('do me').click( () => {
+          $.ajax(`/userTodos/${userTodosId}`, {
+            method: "PUT",
+            data: userTodosId
+          }).done(() => {
+            // console.log('successfully marked as done', userTodo);
+          })
+          })
 
         $article.append($cardStacked);
 
