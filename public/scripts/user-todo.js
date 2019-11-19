@@ -6,8 +6,9 @@ $(document).ready(() => {
     $.ajax("/userTodos",{
       method: "GET"
     }).done((userTodos) => {
-      console.log(userTodos);
-      for(userTodo of userTodos) {
+      const toBeDone = userTodos.filter( u => !u.done );
+
+      for(const userTodo of toBeDone) {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal`);
