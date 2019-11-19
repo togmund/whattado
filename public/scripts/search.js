@@ -6,8 +6,11 @@ $(document).ready(function() {
   });
   $(".search-form").submit(() => {
     event.preventDefault();
+    $(`.todos.container`).empty();
+    $search = $(".search-form input").val();
     $.ajax("/allTodos",{
-      method: "GET"
+      method: "GET",
+      data:{$search: $search}
     }).done((allTodos) => {
       for (todo of allTodos) {
         const $todoContainer = $(`.todos.container`);
