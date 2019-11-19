@@ -19,6 +19,7 @@ module.exports = db => {
     const psFriendly = `'${formArray.join("', '")}'`
     const queryFormat = `
     SELECT u_t.user_todo_id,
+           u_t.user_id,
            td.name AS todo_name,
            u_t.done AS done,
            t.name AS type_name,
@@ -27,14 +28,16 @@ module.exports = db => {
            t.img as type_img,
            done_count
     FROM user_todos u_t
-    JOIN todos td ON td.todo_id = u_t.user_todo_id
+    JOIN todos td ON td.todo_id = u_t.todo_id
     JOIN types t ON t.type_id = td.type_id
     WHERE t.name IN (${psFriendly})
     AND u_t.user_id = $1
+    AND u_t.done = FALSE
     ORDER BY todo_name DESC
     ;`
-    console.log(req.session.user_id);
-    const injectionProtection = [req.session.user_id]
+    const injectionProtection = [req.session.userId]
+    console.log(queryFormat);
+    console.log(injectionProtection);
     db.query(queryFormat, injectionProtection)
       .then(data => {
         const userTodos = data.rows;

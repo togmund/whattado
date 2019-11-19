@@ -2,13 +2,14 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
-const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const app        = express();
-const morgan     = require('morgan');
+const PORT          = process.env.PORT || 8080;
+const ENV           = process.env.ENV || "development";
+const express       = require("express");
+const cookieSession = require("cookie-session");
+const bodyParser    = require("body-parser");
+const sass          = require("node-sass-middleware");
+const app           = express();
+const morgan        = require('morgan');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -22,6 +23,10 @@ db.connect();
 app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -35,12 +40,14 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const userTodoRoutes = require("./routes/userTodos");
 const allTodoRoutes = require("./routes/allTodos");
+const loginRoutes = require("./routes/login");
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/userTodos", userTodoRoutes(db));
 app.use("/allTodos", allTodoRoutes(db));
+app.use("/login", loginRoutes());
 
 // Note: mount other resources here, using the same pattern above
 
