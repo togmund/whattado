@@ -5,10 +5,10 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-module.exports = (db) => {
+module.exports = db => {
   router.get("/", (req, res) => {
     const requestQuery = req.query
     const queryFormat = `
@@ -30,15 +30,45 @@ module.exports = (db) => {
         res.json(userTodos);
       })
       .catch(err => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+  router.put("/:id", (req, res) => {
+    const id = `${req.params.id}`;
+    db.query(`
+      UPDATE user_todos
+      SET done = 'true'
+      WHERE user_todo_id = $1;`,
+      [id]
+    )
+    .then(data => {
+      res.json({success: true});
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+
+  });
+
+  router.post("/:id/add", (req, res) => {
+    // console.log(req.body.todoId);
+    // if (req.session.user_id) {
+    let queryString =`
+    INSERT INTO user_todos (user_id,todo_id,done)
+    VALUES ($1,$2,$3)
+    ;`;
+    let values = [1,req.body.todoId,false]
+    db.query(queryString,values)
+      // .then(data => {
+      //   const allTodos = data.rows;
+      //   res.json(allTodos);
+      // })
+      .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
+    // }
   });
-
-  // router.put('userTodos/:id', (req, res) => {
-  //   db.query(`
-  //   `)
-  // });
   return router;
 };

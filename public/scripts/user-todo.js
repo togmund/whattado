@@ -39,7 +39,16 @@ $(document).ready(() => {
         const $doneCount = $(`<p>`).addClass("right").text(userTodo.done_count);
 
         const $cardAction = $(`<span>`).addClass(`card-action right`);
-        const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
+        // const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
+        const userTodosId = userTodo.user_todo_id;
+        const $actionLink = $(`<a>`).addClass(`right`).text('do me').click( () => {
+          $.ajax(`/userTodos/${userTodosId}`, {
+            method: "PUT",
+            data: userTodosId
+          }).done(() => {
+            // console.log('successfully marked as done', userTodo);
+          })
+          })
 
         $article.append($cardStacked);
 
