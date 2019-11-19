@@ -21,7 +21,14 @@ $(document).ready(function () {
         const $typeName = $(`<p>`).text(todo.type_name);
 
         const $cardAction = $(`<span>`).addClass(`card-action right`);
-        const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
+        const todoId = todo.todo_id;
+        const $actionLink = $(`<a>`).addClass(`right`).attr(`data`, `${todo.todo_id}`).text('do me').click(()=> {
+          console.log(todoId)
+          $.ajax("/userTodos/:id/add", {
+            method:"POST",
+            data:{todoId: todoId}
+          })
+        })
 
         $article.append($cardStacked);
         $cardStacked.append($cardContent);

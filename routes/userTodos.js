@@ -31,5 +31,25 @@ module.exports = (db) => {
   //   db.query(`
   //   `)
   // });
+  router.post("/:id/add", (req, res) => {
+    // console.log(req.body.todoId);
+    // if (req.session.user_id) {
+    let queryString =`
+    INSERT INTO user_todos (user_id,todo_id,done)
+    VALUES ($1,$2,$3)
+    ;`;
+    let values = [1,req.body.todoId,false]
+    db.query(queryString,values)
+      // .then(data => {
+      //   const allTodos = data.rows;
+      //   res.json(allTodos);
+      // })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    // }
+  });
   return router;
 };
