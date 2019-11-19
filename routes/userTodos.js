@@ -32,6 +32,7 @@ module.exports = db => {
     JOIN types t ON t.type_id = td.type_id
     WHERE t.name IN (${psFriendly})
     AND u_t.user_id = $1
+    AND u_t.done = FALSE
     ORDER BY todo_name DESC
     ;`
     const injectionProtection = [req.session.userId]
