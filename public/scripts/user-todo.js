@@ -30,7 +30,6 @@ $(document).ready(() => {
         $cardStacked.append($cardAction);
         $cardAction.append($actionLink);
 
-
         $todoContainer.append($article);
 
         // $(`<article class="card horizontal ${userTodo.user_todo_id}">`).appendTo($(".todos.container"));
