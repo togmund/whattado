@@ -14,10 +14,10 @@ module.exports = (db) => {
     SELECT todos.name as todo_name,types.name as type_name,todos.todo_id
     FROM todos
     JOIN types ON todos.type_id = types.type_id
+    WHERE todos.name ILIKE $1
     ;`;
-    // let values = [req.body]
-    // console.log(values);
-    db.query(queryString)
+    let values = ['%' + req.query.$search + '%']
+    db.query(queryString,values)
       .then(data => {
         const allTodos = data.rows;
         res.json(allTodos);
