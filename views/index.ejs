@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
 
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -33,49 +34,65 @@
   <main>
 
     <!-- Whattado Button Form -->
-    <section>
+    <section class="section">
       <form class="whattado container" method=GET action="/userTodos">
-        <div>
-        <a class="btn-floating btn-large waves-effect waves-light red accent-4"><i class="material-icons">movie_filter</i></a>
-        <a class="btn-floating btn-large waves-effect waves-light indigo darken-2"><i class="material-icons">menu_book</i></a>
-        <a class="btn-floating btn-large waves-effect waves-light teal darken-3"><i class="material-icons">shopping_basket</i></a>
-        <a class="btn-floating btn-large waves-effect waves-light amber darken-4"><i class="material-icons">restaurant</i></a>
-      </div>
-                <!-- Try using flat button from materialize -->
-          <div class="red lighten-3">
-            <button class="waves-effect waves-light btn-large red lighten-3">
-              1 Hour
-            </button>
-            <button class="waves-effect waves-light btn-large red lighten-3">
-              3 Hours
-            </button>
-            <button class="waves-effect waves-light btn-large red lighten-3">
-              6 Hours
-            </button>
-            <button class="waves-effect waves-light btn-large red lighten-3">
-              1 Day
-            </button>
+        <!-- Try using flat button from materialize -->
+        <div class="row section times">
+          <button class="col s3 waves-effect waves-light btn-large red lighten-3" name="1h" value="true">
+            1 Hour
+          </button>
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="3h" value="false">
+            3 Hours
+          </button>
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="6h" value="false">
+            6 Hours
+          </button>
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="24h" value="false">
+            1 Day
+          </button>
+        </div>
+        <div class="row section groups">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="solo" value="false">
+            Solo
+          </button>
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="couple" value="false">
+            Couple
+          </button>
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="group" value="false">
+            Group
+          </button>
+          <button class="col s3 waves-effect waves-light btn-large red accent-2" name="family" value="true">
+            Family
+          </button>
+        </div>
+        <div class="row section types">
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light red accent-4" name="movies" value="true"><i
+                class="material-icons">movie_filter</i></a>
           </div>
-                    <div class="red accent-2">
-            <button class="waves-effect waves-light btn-large red accent-2">
-              Me Time
-            </button>
-            <button class="waves-effect waves-light btn-large red accent-2">
-              Couple Time
-            </button>
-            <button class="waves-effect waves-light btn-large red accent-2">
-              Friends Time
-            </button>
-            <button class="waves-effect waves-light btn-large red accent-2">
-              Family Time
-            </button>
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-indigo white" name="books" value="false"><i
+                class="indigo-text text-darken-2 material-icons">menu_book</i></a>
           </div>
-        <button class="waves-effect waves-light btn-large deep-purple darken-1 pulse" type="submit">whattado<i
-            class="material-icons right">assignment</i></button>
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light teal darken-3" name="shopping" value="true"><i
+                class="material-icons">shopping_basket</i></a>
+          </div>
+          <div class="col s3">
+            <a class="btn-floating btn-large waves-effect waves-light amber darken-4" name="restaurants" value="true"><i
+                class="material-icons">restaurant</i></a>
+          </div>
+        </div>
+        <div class="row section submit">
+          <button class="col s6 offset-s3 waves-effect waves-light btn-large deep-purple darken-1 pulse" type="submit">
+            whattado
+          </button>
+        </div>
+
       </form>
     </section>
 
-    <section class="todos container col s12">
+    <section class="todos section container col s12">
     </section>
     <!--Search button-->
     <section>
@@ -84,24 +101,24 @@
         <a class="btn-floating btn-large click-to-toggle green " id="new-search">
           <i class="large material-icons">add</i>
         </a>
-
-          <ul>
-
-            <li><a class="btn-floating btn-large waves-effect waves-light red accent-4"><i class="material-icons">movie_filter</i></a></li>
-            <li><a class="btn-floating btn-large waves-effect waves-light indigo darken-2"><i class="material-icons">menu_book</i></a>
-            </li>
-            <li><a class="btn-floating btn-large waves-effect waves-light teal darken-3"><i class="material-icons">shopping_basket</i></a>
-            </li>
-            <li><a class="btn-floating btn-large waves-effect waves-light amber darken-4"><i class="material-icons">restaurant</i></a>
-            </li>
-
-
-          </ul>
-          <form class="search-form" method="GET" action="/allTodos"style="padding: 3px;
+        <ul>
+          <li><a class="btn-floating btn-large waves-effect waves-light red accent-4"><i
+                class="material-icons">movie_filter</i></a></li>
+          <li><a class="btn-floating btn-large waves-effect waves-light indigo darken-2"><i
+                class="material-icons">menu_book</i></a>
+          </li>
+          <li><a class="btn-floating btn-large waves-effect waves-light teal darken-3"><i
+                class="material-icons">shopping_basket</i></a>
+          </li>
+          <li><a class="btn-floating btn-large waves-effect waves-light amber darken-4"><i
+                class="material-icons">restaurant</i></a>
+          </li>
+        </ul>
+        <form class="search-form" method="GET" action="/allTodos" style="padding: 3px;
           float: left;">
-              <input name="search"type="search" placeholder="Search...">
-            </form>
-        </div>
+          <input type="search" placeholder="Search...">
+        </form>
+      </div>
       </div>
     </section>
 
@@ -111,8 +128,6 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/user-todo.js"></script>
   <script type="text/javascript" src="/scripts/search.js"></script>
+</body>
 
-  </body>
 </html>
-
-
