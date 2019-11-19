@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     let queryString =`
-    SELECT todos.name as todo_name,types.name as type_name
+    SELECT todos.name as todo_name,types.name as type_name,todos.todo_id
     FROM todos
     JOIN types ON todos.type_id = types.type_id
     ;`;
