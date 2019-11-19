@@ -25,8 +25,14 @@
   <nav>
     <div class="nav-wrapper grey lighten-5 ">
       <a href="#!" class="brand-logo left black-text">whattado</a>
-      <ul class="right">
-        <li><a class="black-text">login</a></li>
+      <ul class="login row right">
+        <li class="right">
+          <a class="black-text">login</a>
+        </li>
+        <div class="input-field inline right col s3">
+            <input id="email_inline" type="email" class="validate">
+            <label for="email_inline">id</label>
+          </div>
       </ul>
     </div>
   </nav>
@@ -42,26 +48,33 @@
           <button class="col s3 waves-effect waves-light btn-large red lighten-3 1h" value="true">
             1 Hour
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 3h" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 3h"
+            value="false">
             3 Hours
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 6h" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 6h"
+            value="false">
             6 Hours
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 24h" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 24h"
+            value="false">
             1 Day
           </button>
         </div>
 
         <!-- Group Radios -->
         <div class="row section groups">
-          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 solo" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 solo"
+            value="false">
             <i class="material-icons">person</i>
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 duo" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 duo"
+            value="false">
             <i class="material-icons">group</i>
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 group" value="false">
+          <button
+            class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 group"
+            value="false">
             <i class="material-icons">group_add</i>
           </button>
           <button class="col s3 waves-effect waves-light btn-large red accent-2 family" value="true">
@@ -106,19 +119,6 @@
         <a class="btn-floating btn-large click-to-toggle green " id="new-search">
           <i class="large material-icons">add</i>
         </a>
-        <ul>
-          <li><a class="btn-floating btn-large waves-effect waves-light red accent-4"><i
-                class="material-icons">movie_filter</i></a></li>
-          <li><a class="btn-floating btn-large waves-effect waves-light indigo darken-2"><i
-                class="material-icons">menu_book</i></a>
-          </li>
-          <li><a class="btn-floating btn-large waves-effect waves-light teal darken-3"><i
-                class="material-icons">shopping_basket</i></a>
-          </li>
-          <li><a class="btn-floating btn-large waves-effect waves-light amber darken-4"><i
-                class="material-icons">restaurant</i></a>
-          </li>
-        </ul>
         <form class="search-form" method="GET" action="/allTodos" style="padding: 3px;
           float: left;">
           <input type="search" placeholder="Search...">
