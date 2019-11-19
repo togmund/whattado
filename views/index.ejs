@@ -36,7 +36,8 @@
     <!-- Whattado Button Form -->
     <section class="section">
       <form class="whattado container" method=GET action="/userTodos">
-        <!-- Try using flat button from materialize -->
+
+        <!-- Time Radios -->
         <div class="row section times">
           <button class="col s3 waves-effect waves-light btn-large red lighten-3 1h" value="true">
             1 Hour
@@ -51,6 +52,8 @@
             1 Day
           </button>
         </div>
+
+        <!-- Group Radios -->
         <div class="row section groups">
           <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white solo" value="false">
             <i class="material-icons">person</i>
@@ -65,22 +68,24 @@
             <i class="material-icons">child_friendly</i>
           </button>
         </div>
+
+        <!-- Type Toggles -->
         <div class="row section types">
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-light red accent-4 movies" value="true"><i
-                class="material-icons">movie_filter</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light red accent-4 movies" value="true"><i
+                class="material-icons">movie_filter</i></button>
           </div>
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-indigo white books" value="false"><i
-                class="indigo-text text-darken-2 material-icons">menu_book</i></a>
+            <button class="btn-floating btn-large waves-effect waves-indigo white books" value="false"><i
+                class="indigo-text text-darken-2 material-icons">menu_book</i></button>
           </div>
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-light teal darken-3 shopping" value="true"><i
-                class="material-icons">shopping_basket</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light teal darken-3 shopping" value="true"><i
+                class="material-icons">shopping_basket</i></button>
           </div>
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-light amber darken-4 restaurants" value="true"><i
-                class="material-icons">restaurant</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light amber darken-4 restaurants" value="true"><i
+                class="material-icons">restaurant</i></button>
           </div>
         </div>
         <div class="row section submit">
