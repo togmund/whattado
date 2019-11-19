@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/public/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -36,55 +36,60 @@
     <!-- Whattado Button Form -->
     <section class="section">
       <form class="whattado container" method=GET action="/userTodos">
-        <!-- Try using flat button from materialize -->
+
+        <!-- Time Radios -->
         <div class="row section times">
-          <button class="col s3 waves-effect waves-light btn-large red lighten-3" name="1h" value="true">
+          <button class="col s3 waves-effect waves-light btn-large red lighten-3 1h" value="true">
             1 Hour
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="3h" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 3h" value="false">
             3 Hours
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="6h" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 6h" value="false">
             6 Hours
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 white" name="24h" value="false">
+          <button class="col s3 waves-effect waves-light btn-large red-text text-lighten-3 grey lighten-4 z-depth-0 24h" value="false">
             1 Day
           </button>
         </div>
+
+        <!-- Group Radios -->
         <div class="row section groups">
-          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="solo" value="false">
-            Solo
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 solo" value="false">
+            <i class="material-icons">person</i>
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="couple" value="false">
-            Couple
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 duo" value="false">
+            <i class="material-icons">group</i>
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 white" name="group" value="false">
-            Group
+          <button class="col s3 waves-effect waves-light btn-large red-text text-accent-2 grey lighten-4 z-depth-0 group" value="false">
+            <i class="material-icons">group_add</i>
           </button>
-          <button class="col s3 waves-effect waves-light btn-large red accent-2" name="family" value="true">
-            Family
+          <button class="col s3 waves-effect waves-light btn-large red accent-2 family" value="true">
+            <i class="material-icons">child_friendly</i>
           </button>
         </div>
+
+        <!-- Type Toggles -->
         <div class="row section types">
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-light red accent-4" name="movies" value="true"><i
-                class="material-icons">movie_filter</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light red accent-4 movies" value="true"><i
+                class="material-icons">movie_filter</i></button>
           </div>
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-indigo white" name="books" value="false"><i
-                class="indigo-text text-darken-2 material-icons">menu_book</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light indigo darken-2 books" value="true"><i
+                class="material-icons">menu_book</i></button>
           </div>
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-light teal darken-3" name="shopping" value="true"><i
-                class="material-icons">shopping_basket</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light grey lighten-4 shopping" value="false"><i
+                class="teal-text text-darken-3 material-icons">shopping_basket</i></button>
           </div>
           <div class="col s3">
-            <a class="btn-floating btn-large waves-effect waves-light amber darken-4" name="restaurants" value="true"><i
-                class="material-icons">restaurant</i></a>
+            <button class="btn-floating btn-large waves-effect waves-light amber darken-4 restaurants" value="true"><i
+                class="material-icons">restaurant</i></button>
           </div>
         </div>
         <div class="row section submit">
-          <button class="col s6 offset-s3 waves-effect waves-light btn-large deep-purple darken-1 pulse" type="submit">
+          <button class="col s6 offset-s3 waves-effect waves-light btn-large deep-purple darken-1" type="submit">
             whattado
           </button>
         </div>
@@ -126,6 +131,7 @@
 
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/whattado-form.js"></script>
   <script type="text/javascript" src="/scripts/user-todo.js"></script>
   <script type="text/javascript" src="/scripts/search.js"></script>
 </body>
