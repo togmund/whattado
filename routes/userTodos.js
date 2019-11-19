@@ -5,31 +5,44 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-module.exports = (db) => {
+module.exports = db => {
   router.get("/", (req, res) => {
-    db.query(`
+    db.query(
+      `
     SELECT u_t.user_todo_id, td.name AS todo_name, u_t.done AS done, t.name AS type_name, done_count
     FROM user_todos u_t
     JOIN todos td ON td.todo_id = u_t.user_todo_id
     JOIN types t ON t.type_id = td.todo_id
-    ;`)
+    WHERE done = 'false'
+    ;`
+    )
       .then(data => {
         const userTodos = data.rows;
         res.json(userTodos);
       })
       .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        res.status(500).json({ error: err.message });
       });
   });
+  router.put("/:id", (req, res) => {
+    const id = `${req.params.id}`;
+    db.query(`
+      UPDATE user_todos
+      SET done = 'true'
+      WHERE user_todo_id = $1;`,
+      [id]
+    )
+    .then(data => {
+      res.json({success: true});
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
 
-  // router.put('userTodos/:id', (req, res) => {
-  //   db.query(`
-  //   `)
-  // });
+  });
+
   return router;
 };
