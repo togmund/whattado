@@ -38,9 +38,20 @@ module.exports = ({ db, axios }) => {
     //   const restaurantRes = finalVals[1];
     //   const musicRes = finalVals[2];
     //   const booksRes = finalVals[2];
-    //   const bookDataArr = booksRes.data.items;
-    //   for(const item of bookDataArr) {
-    //   }
+    // const bookDataArr = booksRes.data.items;
+    // for(const item of bookDataArr) {
+
+    //   console.log(item.volumeInfo.title);
+    //   console.log(item.volumeInfo.authors[0]);
+    //   console.log(item.volumeInfo.publishedDate);
+    //   console.log(item.volumeInfo.industryIdentifiers[0].identifier);
+    //   console.log(item.volumeInfo.categories);
+    //   console.log(item.volumeInfo.infoLink);
+    //   console.log(item.volumeInfo.imageLinks.thumbnail);
+    //   console.log(item.volumeInfo.maturityRating);
+    //   console.log(item.volumeInfo.averageRating);
+    // }
+
     // });
 
       // DB Query
