@@ -24,43 +24,55 @@ module.exports = ({db, axios}) => {
       headers: {
         'user-key': '15be3dc7caf28a0303ceb8251bf19cec'
     }});
-    const musicEndPoint = axios.get(`https://api.spotify.com/v1/search?q=${searchText}&type=track%2Cartist%2Calbum`,{
-      headers: {
-        'Authorization': 'Bearer ' + musicAccessToken
-    }});
+    // const musicEndPoint = axios.get(`https://api.spotify.com/v1/search?q=${searchText}&type=track%2Cartist%2Calbum`,{
+    //   headers: {
+    //     'Authorization': 'Bearer ' + musicAccessToken
+    // }});
     //googlebooks
     const bookEndPoint = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchText}&key=AIzaSyBi1b3U6fVBvIo4VwCylsVDkDY-Aph6BX8`);
 
     // Promise to return API results
-    Promise.all([movieEndPoint, restaurantEndPoint, musicEndPoint, bookEndPoint])
+    Promise.all([movieEndPoint, restaurantEndPoint, bookEndPoint])
     .then(finalVals => {
       const movieRes = finalVals[0];
       const restaurantRes = finalVals[1];
-      const musicRes = finalVals[2];
-      const booksRes = finalVals[3];
+      // const musicRes = finalVals[2];
+      const booksRes = finalVals[2];
       // console.log(movieRes.data);
       // console.log(restaurantRes.data.restaurants[0].restaurant.name);
       // console.log(musicRes);
-      console.log(booksRes.data.items[3].volumeInfo.title);
+      const bookDataArr = booksRes.data.items;
+      for(const item of bookDataArr) {
+        // console.log(item.volumeInfo);
+
+        console.log(item.volumeInfo.title);
+        console.log(item.volumeInfo.authors[0]);
+        console.log(item.volumeInfo.publishedDate);
+        console.log(item.volumeInfo.pageCount);
+        console.log(item.volumeInfo.categories[0]);
+        console.log(item.volumeInfo.averageRating);
+        console.log(item.volumeInfo.imageLinks.thumbnail);
+      }
+      // console.log(booksRes.data.items[4].volumeInfo.title);
 
       // DB Query
-    const queryString =`
-    SELECT todos.name as todo_name,types.name as type_name,todos.todo_id
-    FROM todos
-    JOIN types ON todos.type_id = types.type_id
-    WHERE todos.name ILIKE $1
-    ;`;
-    const values = ['%' + req.query.$search + '%']
-    db.query(queryString,values)
-      .then(data => {
-        const allTodos = data.rows;
-        res.json(allTodos);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    // const queryString =`
+    // SELECT todos.name as todo_name,types.name as type_name,todos.todo_id
+    // FROM todos
+    // JOIN types ON todos.type_id = types.type_id
+    // WHERE todos.name ILIKE $1
+    // ;`;
+    // const values = ['%' + req.query.$search + '%']
+    // db.query(queryString,values)
+    //   .then(data => {
+    //     const allTodos = data.rows;
+    //     res.json(allTodos);
+    //   })
+    //   .catch(err => {
+    //     res
+    //       .status(500)
+    //       .json({ error: err.message });
+    //   });
     });
   });
   return router;
