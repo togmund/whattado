@@ -18,10 +18,10 @@ $(document).ready(() => {
 
     const movies = $(this).find(".movies").val();
     const books = $(this).find(".books").val();
-    const shopping = $(this).find(".shopping").val();
+    const music = $(this).find(".music").val();
     const restaurants = $(this).find(".restaurants").val();
 
-    const $formValues = { oneHour, threeHours, halfDay, allDay, solo, duo, group, family, movies, books, shopping, restaurants };
+    const $formValues = { oneHour, threeHours, halfDay, allDay, solo, duo, group, family, movies, books, music, restaurants };
 
     $.ajax("/userTodos",{
       method: "GET",
