@@ -10,6 +10,7 @@ const bodyParser    = require("body-parser");
 const sass          = require("node-sass-middleware");
 const app           = express();
 const morgan        = require('morgan');
+const axios         = require('axios');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -45,8 +46,8 @@ const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/userTodos", userTodoRoutes(db));
-app.use("/allTodos", allTodoRoutes(db));
+app.use("/userTodos", userTodoRoutes({db, axios}));
+app.use("/allTodos", allTodoRoutes({db, axios}));
 app.use("/login", loginRoutes());
 
 // Note: mount other resources here, using the same pattern above
