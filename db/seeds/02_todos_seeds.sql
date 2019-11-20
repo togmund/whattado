@@ -10,7 +10,7 @@ VALUES
 INSERT INTO
   todos (name, type_id, api_id, img, year, subtype)
 VALUES
-  ('Breaking Bad', 1, "tt0903747",
+  ('Breaking Bad', 1, 'tt0903747',
   'https://m.media-amazon.com/images/M/MV5BMjhiMzgxZTctNDc1Ni00OTIxLTlhMTYtZTA3ZWFkODRkNmE2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg',
   '2008–2013', 'series'
   );
@@ -33,7 +33,7 @@ VALUES
 
 -- Example food things
 INSERT INTO
-  todos (name, type_id, api_id, img, subtype, rating, location, url)
+  todos (name, type_id, api_id, img, subtype, user_rating, location, url)
 VALUES
   ('Earls Test Kitchen', 4, '16617324',
   'https://b.zmtcdn.com/data/res_imagery/16617318_CHAIN_c3d642bf22a74a9e9db9fe101ee303ac_c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
@@ -42,7 +42,7 @@ VALUES
   );
 
 INSERT INTO
-  todos (name, type_id, api_id, img, subtype, rating, location, url)
+  todos (name, type_id, api_id, img, subtype, user_rating, location, url)
 VALUES
   ('Cactus Club Cafe', 4, '16620328',
   'https://b.zmtcdn.com/data/res_imagery/16626973_CHAIN_77ea442aa975262a0dc9969b7e6c26ac.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
@@ -51,7 +51,7 @@ VALUES
   );
 
 INSERT INTO
-  todos (name, type_id, api_id, img, subtype, rating, location, url)
+  todos (name, type_id, api_id, img, subtype, user_rating, location, url)
 VALUES
   ('Trees Organic Coffee', 4, '16618599',
   'https://b.zmtcdn.com/data/res_imagery/16622810_CHAIN_cfc43b222c799ea8a315f806248c4969_c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
@@ -60,7 +60,7 @@ VALUES
   );
 
 INSERT INTO
-  todos (name, type_id, api_id, img, subtype, rating, location, url)
+  todos (name, type_id, api_id, img, subtype, user_rating, location, url)
 VALUES
   ('Super Great Pizza', 4, '16622992',
   'https://b.zmtcdn.com/data/reviews_photos/67d/baadbbb9b6667696fde4564e7ab0067d_1560010854.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
