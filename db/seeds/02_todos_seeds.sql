@@ -21,22 +21,22 @@ VALUES
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('Earls'' Kitchen', 2, 245, 32);
+  ('Earls'' Kitchen', 4, 245, 32);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('Cactus Club Cafe', 2, 435, 32);
+  ('Cactus Club Cafe', 4, 435, 32);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('Trees Organic Coffee', 2, 945, 32);
+  ('Trees Organic Coffee', 4, 945, 32);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('Thierry', 2, 946, 32);
+  ('Thierry', 4, 946, 32);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
@@ -61,19 +61,24 @@ VALUES
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('The Power', 4, 287, 32);
+  ('hammer', 3, 444, 234);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('The Testaments', 4, 165, 32);
+  ('The Power', 2, 287, 32);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('1984', 4, 324, 32);
+  ('The Testaments', 2, 165, 32);
 
 INSERT INTO
   todos (name, type_id, api_id, api_sth)
 VALUES
-  ('World Without Fish', 4, 723, 32);
+  ('1984', 2, 324, 32);
+
+INSERT INTO
+  todos (name, type_id, api_id, api_sth)
+VALUES
+  ('World Without Fish', 2, 723, 32);
