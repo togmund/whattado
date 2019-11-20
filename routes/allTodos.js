@@ -28,16 +28,19 @@ module.exports = ({db, axios}) => {
       headers: {
         'Authorization': 'Bearer ' + musicAccessToken
     }});
+    const bookEndPoint = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchText}&key=AIzaSyBi1b3U6fVBvIo4VwCylsVDkDY-Aph6BX8`);
 
     // Promise to return API results
-    Promise.all([movieEndPoint, restaurantEndPoint, musicEndPoint])
+    Promise.all([movieEndPoint, restaurantEndPoint, musicEndPoint, bookEndPoint])
     .then(finalVals => {
       const movieRes = finalVals[0];
       const restaurantRes = finalVals[1];
       const musicRes = finalVals[2];
+      const booksRes = finalVals[3];
       // console.log(movieRes.data);
       // console.log(restaurantRes.data.restaurants[0].restaurant.name);
       // console.log(musicRes);
+      console.log(booksRes.data.items[3].volumeInfo.title);
 
       // DB Query
     const queryString =`
