@@ -12,7 +12,7 @@ CREATE TABLE "todos" (
   "img" VARCHAR(500),
   "age_rating" VARCHAR(255),
   "user_rating" VARCHAR(255),
-  "type_id" INTEGER NOT NULL,
+  "type_id" INTEGER NOT NULL
 );
 
 ALTER TABLE "todos" ADD FOREIGN KEY ("type_id") REFERENCES "types" ("type_id");
