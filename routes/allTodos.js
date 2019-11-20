@@ -32,28 +32,37 @@ module.exports = ({db, axios}) => {
     const bookEndPoint = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchText}&key=AIzaSyBi1b3U6fVBvIo4VwCylsVDkDY-Aph6BX8`);
 
     // Promise to return API results
-    Promise.all([movieEndPoint, restaurantEndPoint, bookEndPoint])
+
+    // Promise.all([movieEndPoint, restaurantEndPoint, bookEndPoint])
+
+    Promise.all([bookEndPoint])
     .then(finalVals => {
-      const movieRes = finalVals[0];
-      const restaurantRes = finalVals[1];
-      // const musicRes = finalVals[2];
-      const booksRes = finalVals[2];
+
+      // const movieRes = finalVals[0];
+      // const restaurantRes = finalVals[1];
+      // // const musicRes = finalVals[2];
+      // const booksRes = finalVals[2];
+
+      const booksRes = finalVals[0];
+
       // console.log(movieRes.data);
       // console.log(restaurantRes.data.restaurants[0].restaurant.name);
       // console.log(musicRes);
       const bookDataArr = booksRes.data.items;
       for(const item of bookDataArr) {
         // console.log(item.volumeInfo);
+        // console.log(item.volumeInfo.pageCount);
 
         console.log(item.volumeInfo.title);
         console.log(item.volumeInfo.authors[0]);
         console.log(item.volumeInfo.publishedDate);
-        console.log(item.volumeInfo.pageCount);
-        console.log(item.volumeInfo.categories[0]);
-        console.log(item.volumeInfo.averageRating);
+        console.log(item.volumeInfo.industryIdentifiers[0].identifier);
+        console.log(item.volumeInfo.categories);
+        console.log(item.volumeInfo.infoLink);
         console.log(item.volumeInfo.imageLinks.thumbnail);
+        console.log(item.volumeInfo.maturityRating);
+        console.log(item.volumeInfo.averageRating);
       }
-      // console.log(booksRes.data.items[4].volumeInfo.title);
 
       // DB Query
     // const queryString =`
