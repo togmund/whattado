@@ -8,7 +8,7 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = db => {
+module.exports = ({db, axios}) => {
   router.get("/", (req, res) => {
     const requestQuery = req.query;
     const formArray = [];

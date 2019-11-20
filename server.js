@@ -11,6 +11,8 @@ const sass          = require("node-sass-middleware");
 const app           = express();
 const morgan        = require('morgan');
 
+const axios         = require('axios');
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -22,11 +24,13 @@ db.connect();
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
+
 app.set("view engine", "ejs");
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
 }))
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
@@ -45,9 +49,9 @@ const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/userTodos", userTodoRoutes(db));
-app.use("/allTodos", allTodoRoutes(db));
-app.use("/login", loginRoutes());
+app.use("/userTodos", userTodoRoutes({db, axios}));
+app.use("/allTodos", allTodoRoutes({db, axios}));
+app.use("/login", loginRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
