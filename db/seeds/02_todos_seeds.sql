@@ -1,44 +1,72 @@
 -- Example movies things
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id,img,year,subtype)
 VALUES
-  ('Lucifer', 1, 540);
+  ('Lucifer', 1, 'tt4052886',
+  'https://m.media-amazon.com/images/M/MV5BZTA2NTBkYWUtMzM4Zi00YzhlLTk4NWItY2U1ODczNDMyNDAzXkEyXkFqcGdeQXVyNDg4NjY5OTQ@._V1_SX300.jpg',
+  '2015–', 'series'
+  );
 
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, year, subtype)
 VALUES
-  ('Breaking Bad', 1, 390);
+  ('Breaking Bad', 1, "tt0903747",
+  'https://m.media-amazon.com/images/M/MV5BMjhiMzgxZTctNDc1Ni00OTIxLTlhMTYtZTA3ZWFkODRkNmE2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg',
+  '2008–2013', 'series'
+  );
 
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, year, subtype)
 VALUES
-  ('Harry Potter', 1, 870);
+  ('Harry Potter and the Deathly Hallows: Part 2', 1, 'tt1201607',
+  'https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg',
+  '2011', 'movie'
+  );
 
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, year, subtype)
 VALUES
-  ('Lord of the Rings', 1, 287);
+  ('The Lord of the Rings: The Fellowship of the Ring', 1, 'tt0120737',
+  'https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg',
+  '2001', 'movie'
+  );
 
 -- Example food things
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, subtype, rating, location, url)
 VALUES
-  ('Earls'' Kitchen', 4, 245);
+  ('Earls Test Kitchen', 4, '16617324',
+  'https://b.zmtcdn.com/data/res_imagery/16617318_CHAIN_c3d642bf22a74a9e9db9fe101ee303ac_c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
+  'Canadian', '3.8', '905 Hornby Street, Vancouver V6Z1V3',
+  'https://www.zomato.com/vancouver/earls-test-kitchen-downtown-vancouver?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'
+  );
 
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, subtype, rating, location, url)
 VALUES
-  ('Cactus Club Cafe', 4, 435);
+  ('Cactus Club Cafe', 4, '16620328',
+  'https://b.zmtcdn.com/data/res_imagery/16626973_CHAIN_77ea442aa975262a0dc9969b7e6c26ac.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
+  'Canadian', '3.7', '1598 Pemberton Avenue, North Vancouver V7P',
+  'https://www.zomato.com/vancouver/cactus-club-cafe-lower-capilano?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'
+  );
 
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, subtype, rating, location, url)
 VALUES
-  ('Trees Organic Coffee', 4, 945);
+  ('Trees Organic Coffee', 4, '16618599',
+  'https://b.zmtcdn.com/data/res_imagery/16622810_CHAIN_cfc43b222c799ea8a315f806248c4969_c.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
+  'Cafe, Sandwich', '4.2', '450 Granville Street, Vancouver V6C1V4',
+  'https://www.zomato.com/vancouver/trees-organic-coffee-downtown-vancouver?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'
+  );
 
 INSERT INTO
-  todos (name, type_id, api_id)
+  todos (name, type_id, api_id, img, subtype, rating, location, url)
 VALUES
-  ('Thierry', 4, 946);
+  ('Super Great Pizza', 4, '16622992',
+  'https://b.zmtcdn.com/data/reviews_photos/67d/baadbbb9b6667696fde4564e7ab0067d_1560010854.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A',
+  'Pizza, Fast Food', '3.8', '3388 Vanness Drive, Vancouver V5R',
+  'https://www.zomato.com/vancouver/super-great-pizza-renfrew-collingwood-vancouver?utm_source=api_basic_user&utm_medium=api&utm_campaign=v2.1'
+  );
 
 -- Example Music Things
 INSERT INTO
