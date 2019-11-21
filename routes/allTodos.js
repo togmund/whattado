@@ -26,16 +26,16 @@ module.exports = ({ db, axios }) => {
     WHERE todos.name ILIKE $1
     ;`;
     const values = ['%' + searchText + '%']
-    const todoEndpoint = db.query(queryString, values)
+    const todoEndpoint = db.query(queryString, values);
 
     // API Endpoint Function Delclarations
     const movieEndPoint = axios.get('http://www.omdbapi.com/?apikey=8dae3cd2&s=' + searchText);
     const bookEndPoint = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchText}&key=AIzaSyBi1b3U6fVBvIo4VwCylsVDkDY-Aph6BX8`);
-    const musicEndPoint = axios.get(`https://api.spotify.com/v1/search?q=${searchText}&type=track%2Cartist%2Calbum`, {
-      headers: {
-        'Authorization': 'Bearer ' + musicAccessToken
-      }
-    });
+    // const musicEndPoint = axios.get(`https://api.spotify.com/v1/search?q=${searchText}&type=track%2Cartist%2Calbum`, {
+    //   headers: {
+    //     'Authorization': 'Bearer ' + musicAccessToken
+    //   }
+    // });
     const restaurantEndPoint = axios.get('https://developers.zomato.com/api/v2.1/search?q=' + searchText, {
       headers: {
         'user-key': '15be3dc7caf28a0303ceb8251bf19cec'
@@ -44,17 +44,17 @@ module.exports = ({ db, axios }) => {
 
 
     // Promise to return API results
-    Promise.all([todoEndpoint, movieEndPoint, /* bookEndPoint, */ musicEndPoint, restaurantEndPoint])
+    Promise.all([todoEndpoint, movieEndPoint,  bookEndPoint,  /*musicEndPoint, */restaurantEndPoint])
       .then(finalVals => {
 
         const todoRes = finalVals[0].rows;
         const movieRes = finalVals[1];
-        // // const booksRes = finalVals[2];
-        const albumRes = finalVals[2].data.albums.items;
-        const artistRes = finalVals[2].data.albums.items;
-        const trackRes = finalVals[2].data.albums.items;
-        const restaurantRes = finalVals[2];
-         console.log(albumRes);
+        const booksRes = finalVals[2].data.items;
+        // const albumRes = finalVals[2].data.albums.items;
+        // const artistRes = finalVals[2].data.albums.items;
+        // const trackRes = finalVals[2].data.albums.items;
+        const restaurantRes = finalVals[3];
+        //  console.log(albumRes);
 
         // console.log([
         //   todoRes,
@@ -69,7 +69,7 @@ module.exports = ({ db, axios }) => {
         res.json([
           todoRes,
           movieRes.data.Search,
-          // /* booksRes, */
+          booksRes,
           // albumRes,
           // artistRes,
           // trackRes,
