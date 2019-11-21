@@ -1,25 +1,26 @@
 $(document).ready(function () {
-  $(".search-form").hide();
   // $('.fixed-action-btn').floatingActionButton();
   $("#new-search").on("click", () => {
     $(`.todos.container`).empty();
     $(".search-form").slideToggle("fast");
-    if ($("div.times").is(":visible")) {
       $("div.times").slideToggle("fast");
       $("div.groups").slideToggle("fast");
       $("div.row.section.submit").slideToggle("fast");
-    }
   });
   $(".search-form").submit(() => {
     event.preventDefault();
+    $("div.times").slideUp("fast");
+    $("div.groups").slideUp("fast");
+    $("div.row.section.submit").slideUp("fast");
     $(`.todos.container`).empty();
+    $("#todo-spinner").show();
     $search = $(".search-form input").val();
     $.ajax("/allTodos", {
       method: "GET",
       data: { $search: $search }
     }).done((allTodos) => {
+      $("#todo-spinner").hide();
       for (todo of allTodos[0]) {
-
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal`);

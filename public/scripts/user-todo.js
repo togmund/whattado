@@ -1,11 +1,10 @@
 $(document).ready(() => {
-
   $("form.whattado.container").on("submit", function(event) {
 
     event.preventDefault();
 
     $(".todos.container").empty();
-
+    $("#todo-spinner").show();
     const oneHour = $(this).find(".1h").val();
     const threeHours = $(this).find(".3h").val();
     const halfDay = $(this).find(".6h").val();
@@ -27,6 +26,7 @@ $(document).ready(() => {
       method: "GET",
       data: $formValues
     }).done((userTodos) => {
+      $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
         const $todoContainer = $(`.todos.container`);
 

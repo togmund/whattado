@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  $("#todo-spinner").hide();
+  $(".search-form").hide();
   $(".brand-logo").on("click", () =>{
     event.preventDefault();
     $(".todos.container").empty();

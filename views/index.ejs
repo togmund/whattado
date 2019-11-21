@@ -22,10 +22,10 @@
   <!-- Navbar -->
   <nav>
     <div class="nav-wrapper grey lighten-5 ">
-      <a href="#!" class="brand-logo left black-text">whattado</a>
+      <a href="#!" class="brand-logo left pink-text text-darken-4">whattado</a>
       <ul class="login row right">
         <li class="right login-clicker">
-          <a class="black-text modal-trigger" href="#login-modal">login</a>
+          <a class="modal-trigger pink-text text-darken-3" href="#login-modal">login</a>
         </li>
       </ul>
     </div>
@@ -37,9 +37,9 @@
       <section class="section row">
         <div class="input-field col s8">
           <input value="1" id="login-id" type="text" class="validate">
-          <label class="active" for="login-id">login id</label>
+          <label class="active pink-text text-darken-2" for="login-id">login id</label>
         </div>
-        <button class="waves-effect waves-light btn-large col s3 offset-s1">login</button>
+        <button class="waves-effect waves-light btn-large pink darken-3 col s3 offset-s1">login</button>
       </section>
     </div>
   </div>
@@ -132,13 +132,32 @@
       </form>
     </section>
 
+          <!-- Spinner -->
+          <div class="row" id="todo-spinner">
+              <div class="col offset-s5">
+                <div class="preloader-wrapper small active">
+                  <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
     <section class="todos container col s12">
+
     </section>
     <!--Search button-->
     <section>
-      <div class="fixed-action-btn click-to-toggle vertical ">
 
-        <a class="btn-floating btn-large click-to-toggle green " id="new-search">
+      <div class="fixed-action-btn click-to-toggle vertical">
+        <a class="btn-floating btn-large click-to-toggle green darken-3" id="new-search">
           <i class="large material-icons">add</i>
         </a>
         <form class="search-form" method="GET" action="/allTodos" style="padding: 3px;
