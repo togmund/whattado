@@ -49,12 +49,13 @@ module.exports = ({ db, axios }) => {
       .then(finalVals => {
 
         const todoRes = finalVals[0].rows;
-        // const movieRes = finalVals[1];
+        const movieRes = finalVals[1];
         // // const booksRes = finalVals[2];
         // const albumRes = finalVals[2].data.albums.items;
         // const artistRes = finalVals[2].data.albums.items;
         // const trackRes = finalVals[2].data.albums.items;
-        // const restaurantRes = finalVals[3];
+        const restaurantRes = finalVals[2];
+         console.log(restaurantRes.data.restaurants);
 
         // console.log([
         //   todoRes,
@@ -67,13 +68,13 @@ module.exports = ({ db, axios }) => {
         // ])
 
         res.json([
-          todoRes
-          // movieRes,
+          todoRes,
+          movieRes.data.Search,
           // /* booksRes, */
           // albumRes,
           // artistRes,
           // trackRes,
-          // restaurantRes
+          restaurantRes.data.restaurants
         ])
       })
       .catch(err => {
