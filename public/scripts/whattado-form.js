@@ -36,12 +36,14 @@ $(document).ready(() => {
         .addClass("red accent-4")
         .val(true)
         .children().removeClass("red-text text-accent-4");
+      $("article.movies").slideDown("fast");
     } else {
       $(this)
         .addClass("grey lighten-4")
         .removeClass("red accent-4")
         .val(false)
         .children().addClass("red-text text-accent-4");
+        $("article.movies").slideUp("fast");
     }
   });
 
@@ -53,12 +55,14 @@ $(document).ready(() => {
         .addClass("indigo darken-2")
         .val(true)
         .children().removeClass("indigo-text text-darken-2");
+        $("article.books").slideDown("fast");
     } else {
       $(this)
         .addClass("grey lighten-4")
         .removeClass("indigo darken-2")
         .val(false)
         .children().addClass("indigo-text text-darken-2");
+        $("article.books").slideUp("fast");
     }
   });
 
@@ -70,12 +74,14 @@ $(document).ready(() => {
         .addClass("teal darken-3")
         .val(true)
         .children().removeClass("teal-text text-darken-3");
+        $("article.music").slideDown("fast");
     } else {
       $(this)
         .addClass("grey lighten-4")
         .removeClass("teal darken-3")
         .val(false)
         .children().addClass("teal-text text-darken-3");
+        $("article.music").slideUp("fast");
     }
   });
 
@@ -87,12 +93,14 @@ $(document).ready(() => {
         .addClass("amber darken-4")
         .val(true)
         .children().removeClass("amber-text text-darken-4");
+        $("article.restaurants").slideDown("fast");
     } else {
       $(this)
         .addClass("grey lighten-4")
         .removeClass("amber darken-4")
         .val(false)
         .children().addClass("amber-text text-darken-4");
+        $("article.restaurants").slideUp("fast");
     }
   });
 

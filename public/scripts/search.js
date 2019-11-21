@@ -26,7 +26,10 @@ $(document).ready(function () {
       for (todo of allTodos[0]) {
         const $todoContainer = $(`.todos.container`);
 
-        const $article = $('<article>').addClass(`card horizontal`);
+        const $article = $('<article>').addClass(`card horizontal ${todo.type_name}`);
+        if ($(`.types button.${todo.type_name}`).val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $('<img>').addClass('image').attr('src', todo.todo_img);
@@ -79,6 +82,9 @@ $(document).ready(function () {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal movies`);
+        if ($(".types button.movies").val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $('<img>').addClass('image').attr('src', todo.Poster);
@@ -137,6 +143,9 @@ $(document).ready(function () {
       for (todo of allTodos[2]) {
         const $todoContainer = $(`.todos.container`);
         const $article = $('<article>').addClass(`card horizontal books`);
+        if ($(".types button.books").val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         let $divLeftImg = $('<img>').addClass('image circle');
@@ -199,6 +208,9 @@ $(document).ready(function () {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal music`);
+        if ($(".types button.music").val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $('<img>').addClass('image circle').attr('src', todo.images[0].url);
@@ -259,6 +271,9 @@ $(document).ready(function () {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal music`);
+        if ($(".types button.music").val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         let $divLeftImg = $('<img>').addClass('image circle');
@@ -324,6 +339,9 @@ $(document).ready(function () {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal music`);
+        if ($(".types button.music").val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $('<img>').addClass('image circle').attr('src', todo.album.images[0].url);
@@ -382,6 +400,9 @@ $(document).ready(function () {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $('<article>').addClass(`card horizontal restaurants`);
+        if ($(".types button.restaurants").val()=== 'false') {
+          $article.hide();
+        }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $('<img>').addClass('image').attr('src', todo.restaurant.thumb);
