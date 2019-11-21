@@ -12,8 +12,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -27,44 +25,59 @@
       <a href="#!" class="brand-logo left black-text">whattado</a>
       <ul class="login row right">
         <li class="right login-clicker">
-          <a class="black-text">login</a>
+          <a class="black-text modal-trigger" href="#login-modal">login</a>
         </li>
-        <div class="input-field inline right col s3">
-          <input id="id_inline" type="text" class="validate">
-          <label for="id_inline">id</label>
-        </div>
       </ul>
     </div>
   </nav>
 
-  <main>
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <section class="section row">
+        <div class="input-field col s8">
+          <input value="1" id="login-id" type="text" class="validate">
+          <label class="active" for="login-id">login id</label>
+        </div>
+        <button class="waves-effect waves-light btn-large col s3 offset-s1">login</button>
+      </section>
+    </div>
+  </div>
 
+  <!-- Main -->
+  <main>
+    <!--Weird button slide toggle without this-->
+    <section class="section"></section>
     <!-- Whattado Button Form -->
     <section class="section">
       <form class="whattado container" method=GET action="/userTodos">
 
         <!-- Time Radios -->
         <div class="row section times">
-          <button class="col s3 waves-effect waves-light btn-large pink darken-1 1h" value="true">
-            1 Hour
+          <button class="col s3 waves-effect waves-light btn-large pink darken-1 flow-text 1h" value="true">
+            1Hour
           </button>
-          <button class="col s3 waves-effect waves-light btn-large pink-text text-darken-1 grey lighten-4 z-depth-0 3h"
+          <button
+            class="col s3 waves-effect waves-light btn-large pink-text text-darken-1 grey lighten-4 z-depth-0 flow-text 3h"
             value="false">
-            3 Hours
+            3Hours
           </button>
-          <button class="col s3 waves-effect waves-light btn-large pink-text text-darken-1 grey lighten-4 z-depth-0 6h"
+          <button
+            class="col s3 waves-effect waves-light btn-large pink-text text-darken-1 grey lighten-4 z-depth-0 flow-text 6h"
             value="false">
-            6 Hours
+            6Hours
           </button>
-          <button class="col s3 waves-effect waves-light btn-large pink-text text-darken-1 grey lighten-4 z-depth-0 24h"
+          <button
+            class="col s3 waves-effect waves-light btn-large pink-text text-darken-1 grey lighten-4 z-depth-0 flow-text 24h"
             value="false">
-            1 Day
+            1Day
           </button>
         </div>
 
         <!-- Group Radios -->
         <div class="row section groups">
-          <button class="col s3 waves-effect waves-light btn-large pink-text text-darken-2 grey lighten-4 z-depth-0 solo"
+          <button
+            class="col s3 waves-effect waves-light btn-large pink-text text-darken-2 grey lighten-4 z-depth-0 solo"
             value="false">
             <i class="material-icons">person</i>
           </button>
@@ -83,7 +96,7 @@
         </div>
 
         <!-- Type Toggles -->
-        <div class="row types">
+        <div class="row section types">
           <div class="col s3">
             <p class="center-align">
               <button class="btn-floating btn-large waves-effect waves-light red accent-4 movies" value="true"><i
@@ -112,15 +125,14 @@
         <div class="row section submit">
           <button class="col s6 offset-s3 waves-effect waves-light btn-large center-align pink darken-3 hoverable"
             type="submit">
-            whattado
-            <img src="https://img.icons8.com/ios/50/000000/paper-waste.png">
+            <img src="https://img.icons8.com/ios/50/000000/paper-waste.png" style="filter: invert(100%)">
           </button>
         </div>
 
       </form>
     </section>
 
-    <section class="todos section container col s12">
+    <section class="todos container col s12">
     </section>
     <!--Search button-->
     <section>
@@ -141,7 +153,10 @@
 
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="/scripts/home-button.js"></script>
   <script type="text/javascript" src="/scripts/login.js"></script>
   <script type="text/javascript" src="/scripts/whattado-form.js"></script>
   <script type="text/javascript" src="/scripts/user-todo.js"></script>

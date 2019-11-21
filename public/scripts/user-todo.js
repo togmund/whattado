@@ -62,6 +62,10 @@ $(document).ready(() => {
 
         $todoContainer.append($article);
       }
+      $(".search-form").hide();
+      $("div.times").slideToggle("fast");
+      $("div.groups").slideToggle("fast");
+      $("div.row.section.submit").slideToggle("fast");
     });
   });
 });
