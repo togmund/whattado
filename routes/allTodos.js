@@ -21,7 +21,7 @@ module.exports = ({ db, axios }) => {
 
     // DB Query
     const queryString = `
-    SELECT *, todos.name as todo_name,types.name as type_name,todos.todo_id
+    SELECT *,todos.img as todo_img, todos.name as todo_name,types.name as type_name,todos.todo_id
     FROM todos
     JOIN types ON todos.type_id = types.type_id
     WHERE todos.name ILIKE $1
@@ -45,42 +45,43 @@ module.exports = ({ db, axios }) => {
 
 
     // Promise to return API results
-    Promise.all([todoEndpoint, movieEndPoint, /* bookEndPoint, */ musicEndPoint, restaurantEndPoint])
+    Promise.all([todoEndpoint, movieEndPoint, /* bookEndPoint, */ /*musicEndPoint,*/ restaurantEndPoint])
       .then(finalVals => {
 
         const todoRes = finalVals[0].rows;
-        const movieRes = finalVals[1];
-        // const booksRes = finalVals[2];
-        const albumRes = finalVals[2].data.albums.items;
-        const artistRes = finalVals[2].data.albums.items;
-        const trackRes = finalVals[2].data.albums.items;
-        const restaurantRes = finalVals[3];
+        // const movieRes = finalVals[1];
+        // // const booksRes = finalVals[2];
+        // const albumRes = finalVals[2].data.albums.items;
+        // const artistRes = finalVals[2].data.albums.items;
+        // const trackRes = finalVals[2].data.albums.items;
+        // const restaurantRes = finalVals[3];
 
-        console.log([
-          todoRes,
-          movieRes,
-          /* booksRes, */
-          albumRes,
-          artistRes,
-          trackRes,
-          restaurantRes
-        ])
+        // console.log([
+        //   todoRes,
+        //   movieRes,
+        //   /* booksRes, */
+        //   albumRes,
+        //   artistRes,
+        //   trackRes,
+        //   restaurantRes
+        // ])
 
         res.json([
-          todoRes,
-          movieRes,
-          /* booksRes, */
-          albumRes,
-          artistRes,
-          trackRes,
-          restaurantRes
+          todoRes
+          // movieRes,
+          // /* booksRes, */
+          // albumRes,
+          // artistRes,
+          // trackRes,
+          // restaurantRes
         ])
-          .catch(err => {
-            res
-              .status(500)
-              .json({ error: err.message });
-          });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
+
   });
   return router;
 };
