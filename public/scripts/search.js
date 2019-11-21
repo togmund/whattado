@@ -127,7 +127,7 @@ $(document).ready(function () {
         const $article = $('<article>').addClass(`card horizontal books`);
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
-        const $divLeftImg = $('<img>').addClass('image').attr('src',todo.volumeInfo.imageLinks.thumbnail);
+        const $divLeftImg = $('<img>').addClass('image, circle').attr('src',todo.volumeInfo.imageLinks.thumbnail);
         const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
         const $divLeftBottomBtn = $(`<a>`).addClass(`url`).attr({href: todo.volumeInfo.infoLink, target: '_blank'}).text('click');
 
