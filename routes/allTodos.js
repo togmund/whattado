@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = ({ db, axios }) => {
 
   // Temp Tokens
-  const musicAccessToken = 'BQCTOGa4mIRxelfN3EipRv0-vwUVyc31kRDghhtYojKUUPjEGa_6sKEa9H_8Rkjs2oGaeGHo8xiqt6eAVcJImuY13lBZS-V1bLRlEfGo15azBx0C84CLTjDi6Dv4cBrSU2tgIgUb-fd306JlXHXsh3FZ5__mEWg'
+  const musicAccessToken = 'BQDWZZfWVQOIZ6nff-PU8DZK6aCUF8fbWXkaee5QqDiG54poE8FjVsMHoS5VbuApW23lrtr3IKJNJbcVtzGHmgH-X2aX8lIOK_TSY-2nj9m0w-6GHnc3OQM33B-MtztZVCYXNX2oiOAcKxLMvimtt7DQZZmOGhs'
 
   router.get("/", (req, res) => {
 
@@ -57,7 +57,6 @@ module.exports = ({ db, axios }) => {
         const artistRes = finalVals[0].data.artists.items;
         const trackRes = finalVals[0].data.tracks.items;
         // const restaurantRes = finalVals[3];
-        console.log("inside then:",albumRes);
         // console.log([
         //   todoRes,
         //   movieRes,
@@ -67,7 +66,6 @@ module.exports = ({ db, axios }) => {
         //   trackRes,
         //   restaurantRes
         // ])
-        console.log("pre-json",albumRes);
         res.json([
           // todoRes
           // movieRes,
