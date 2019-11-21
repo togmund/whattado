@@ -31,7 +31,7 @@ module.exports = ({ db, axios }) => {
 
     // API Endpoint Function Delclarations
     const movieEndPoint = axios.get('http://www.omdbapi.com/?apikey=8dae3cd2&s=' + searchText);
-    // const bookEndPoint = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchText}&key=AIzaSyBi1b3U6fVBvIo4VwCylsVDkDY-Aph6BX8`);
+    const bookEndPoint = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchText}&key=AIzaSyBi1b3U6fVBvIo4VwCylsVDkDY-Aph6BX8`);
     const musicEndPoint = axios.get(`https://api.spotify.com/v1/search?q=${searchText}&type=track%2Cartist%2Calbum`, {
       headers: {
         'Authorization': 'Bearer ' + musicAccessToken
@@ -45,21 +45,21 @@ module.exports = ({ db, axios }) => {
 
 
     // Promise to return API results
-    Promise.all([todoEndpoint, movieEndPoint, /* bookEndPoint, */ musicEndPoint, restaurantEndPoint])
+    Promise.all([todoEndpoint, movieEndPoint, bookEndPoint, musicEndPoint, restaurantEndPoint])
       .then(finalVals => {
 
         const todoRes = finalVals[0].rows;
         const movieRes = finalVals[1];
-        // const booksRes = finalVals[2];
-        const albumRes = finalVals[2].data.albums.items;
-        const artistRes = finalVals[2].data.albums.items;
-        const trackRes = finalVals[2].data.albums.items;
-        const restaurantRes = finalVals[3];
+        const booksRes = finalVals[2];
+        const albumRes = finalVals[3].data.albums.items;
+        const artistRes = finalVals[3].data.albums.items;
+        const trackRes = finalVals[3].data.albums.items;
+        const restaurantRes = finalVals[4];
 
         console.log([
           todoRes,
           movieRes,
-          /* booksRes, */
+          booksRes,
           albumRes,
           artistRes,
           trackRes,
@@ -69,7 +69,7 @@ module.exports = ({ db, axios }) => {
         res.json([
           todoRes,
           movieRes,
-          /* booksRes, */
+          booksRes,
           albumRes,
           artistRes,
           trackRes,
