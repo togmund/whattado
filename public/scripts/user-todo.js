@@ -28,38 +28,72 @@ $(document).ready(() => {
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
+        console.log(userTodo);
         const $todoContainer = $(`.todos.container`);
 
-        const $article = $('<article>').addClass(`card horizontal`);
-        const $cardStacked = $(`<span>`).addClass(`card-stacked`);
+        const $article = $("<article>").addClass(
+          `card horizontal ${userTodo.type_name}`
+        );
+        if ($(`.types button.${userTodo.type_name}`).val() === "false") {
+          $article.hide();
+        }
+        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeftTop = $(`<div>`).addClass(`left-top`);
+        const $divLeftImg = $("<img>")
+          .addClass("image")
+          .attr("src", userTodo.todo_img);
+        const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
+        const $divLeftBottomBtn = $(`<a>`)
+        .addClass(`url`)
+          .attr({
+            href: userTodo.todo_url,
+            target: "_blank"
+          })
+          .text(userTodo.type_name + ' link');;
 
-        const $cardContent = $(`<span>`).addClass(`card-content`);
-        const $todoName = $(`<p>`).text(userTodo.todo_name);
-        const $typeTag = $(`<i>`).addClass(`material-icons`).addClass(`${userTodo.type_color}-text`).addClass(`text-${userTodo.type_color_accent}`).text(userTodo.type_img);
-        const $doneCount = $(`<p>`).addClass("right").text(userTodo.done_count);
-
-        const $cardAction = $(`<span>`).addClass(`card-action right`);
-        // const $actionLink = $(`<a>`).addClass(`right`).attr(`href`, '#').text('do me');
-        const userTodosId = userTodo.user_todo_id;
-        const $actionLink = $(`<a>`).addClass(`right`).text('do me').click(() => {
-          $.ajax(`/userTodos/${userTodosId}`, {
-            method: "PUT",
-            data: userTodosId
-          }).done(() => {
-            // console.log('successfully marked as done', userTodo);
+        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRightTop = $(`<div>`).addClass(`right-top`);
+        const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
+        const $todoName = $(`<div>`)
+          .addClass(`todo-name`)
+          .text(userTodo.todo_name);
+        const $author = $("<span>").addClass("author").text(userTodo.author);
+        const $year = $("<span>").addClass("year").text(userTodo.year);
+        const $genre = $("<span>").addClass("genre").text(userTodo.genre);
+        const $divBtn = $("<div>").addClass("right-top-btn");
+        const todoId = userTodo.todo_id;
+        const $doMeBtn = $("<button>")
+          .addClass("do-me btn-large")
+          .text("do me")
+          .click(() => {
+            $.ajax(`/userTodos/new`, {
+              method: "POST",
+              contentType: "application/json",
+              data: JSON.stringify({
+                todoId: todoId
+              }).done(() => {
+                // console.log('successfully marked as done', userTodo);
+              })
+            });
           });
-        });
+        const $divRightBottom = $("<div>").addClass("right-bottom").text(todo.todo_user_rating);
 
-        $article.append($cardStacked);
-
-        $cardStacked.append($cardContent);
-        $cardContent.append($todoName);
-        $cardContent.append($typeTag);
-        $cardContent.append($doneCount);
-
-        $cardStacked.append($cardAction);
-        $cardAction.append($actionLink);
-
+        $article.append($divLeft);
+        $divLeft.append($divLeftTop);
+        $divLeftTop.append($divLeftImg);
+        $divLeft.append($divLeftBottom);
+        $divLeftBottom.append($divLeftBottomBtn);
+        $article.append($divRight);
+        $divRight.append($divRightBottom);
+        $divRight.append($divRightTop);
+        $divRightTop.append($divRightTopText);
+        $divRightTop.append($divBtn);
+        $divBtn.append($doMeBtn);
+        $divRightTop.append($divRightTopText);
+        $divRightTopText.append($todoName);
+        $divRightTopText.append($author);
+        $divRightTopText.append($year);
+        $divRightTopText.append($genre);
         $todoContainer.append($article);
       }
       $(".search-form").hide();
