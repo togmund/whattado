@@ -99,6 +99,7 @@ $(document).ready(() => {
             target: "_blank"
           })
           .attr("style", "border-radius:15px;");
+
         const $linkIcon = $("<i>").addClass(`${userTodo.type_color}-text text-${userTodo.type_color_accent}  material-icons`).text("link");
 
 
