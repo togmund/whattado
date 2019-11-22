@@ -385,20 +385,26 @@ $(document).ready(function () {
         if ($(".types button.music").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left col s4`);
-        const $divLeftTop = $(`<div>`).addClass(`left-top`);
+        const $divLeft = $(`<div>`).addClass(`card-stacked col s3`);
+        const $divLeftTop = $(`<div>`).addClass(`section`);
         const $divLeftImg = $("<img>")
           .addClass("image circle")
+          .attr("style", "height: 95px; width: 95px; object-fit: cover;")
           .attr("src", todo.images[0].url);
-        const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
-        const $divLeftBottomBtn = $(`<a>`)
-          .addClass(`url`)
-          .text(todo.external_urls.spotify);
 
-        const $divRight = $(`<div>`).addClass(`right col s8`);
-        const $divRightTop = $(`<div>`).addClass(`right-top`);
-        const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
-        const $todoName = $(`<div>`)
+        const $divLeftBottom = $(`<div>`).addClass(`card-action`);
+        const $divLeftBottomBtn = $(`<a>`)
+          .addClass(`btn url grey lighten-4`)
+          .attr({ href: todo.external_urls.spotify, target: "_blank" })
+          .attr("style", "border-radius:15px;");
+          const $linkIcon = $("<i>")
+          .addClass(`teal-text text-darken-3 material-icons`)
+          .text("link");
+
+          const $divRight = $(`<div>`).addClass(`card-stacked col s9`);
+          const $divRightTop = $(`<div>`).addClass(`card-content`);
+          const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
+          const $todoName = $(`<h5>`)
           .addClass(`todo-name`)
           .text(todo.name);
         const $author = $("<span>")
@@ -422,8 +428,7 @@ $(document).ready(function () {
         const ____api_id = todo.i;
 
         const $doMeBtn = $("<button>")
-          .addClass("do-me btn-large")
-          .text("do me")
+        .addClass("btn-floating right btn grey lighten-4")
           .click(() => {
             $.ajax(`/allTodos/new`, {
               method: "POST",
@@ -446,27 +451,49 @@ $(document).ready(function () {
                   todoId: data.rows[0].todo_id
                 })
               });
+              $doMeBtn
+              .removeClass("grey lighten-4")
+              .addClass("pink darken-3")
+              .children()
+              .removeClass("pink-text text-darken-3")
+              .text("check_box");
+            setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+
         const $divRightBottom = $("<div>").addClass("right-bottom");
+
+        const $typeBadge = $("<button>").addClass(`btn-floating btn darken-3 teal books`)
+        const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`movie_filter`);
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
         $divLeftTop.append($divLeftImg);
         $divLeft.append($divLeftBottom);
         $divLeftBottom.append($divLeftBottomBtn);
+        $divLeftBottomBtn.append($linkIcon);
+
         $article.append($divRight);
-        $divRight.append($divRightBottom);
         $divRight.append($divRightTop);
-        $divRightTop.append($divRightTopText);
+
         $divRightTop.append($divBtn);
-        $divBtn.append($doMeBtn);
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
         $divRightTopText.append($author);
         $divRightTopText.append($year);
-        $divRightTopText.append($subType);
+
+
+        $divRight.append($divRightBottom);
+
+        $divRightBottom.append($typeBadge);
+        $typeBadge.append($typeBadgeIcon);
+
+        $divBtn.append($doMeBtn);
+        $doMeBtn.append($doMeUncheckedIcon);
+
         $todoContainer.append($article);
+
       }
 
       // Artist Card Builder
