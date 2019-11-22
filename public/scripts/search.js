@@ -77,18 +77,21 @@ $(document).ready(function () {
                 .addClass("pink darken-3")
                 .children()
                 .removeClass("pink-text text-darken-3")
-                .text("check_box");
+                .text("check");
               setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
-        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
-        const $divRightBottom = $("<div>").addClass("right-bottom").text(todo.todo_user_rating);
+        const $divRightBottom = $("<div>").addClass("right-bottom");
         const $typeBadge = $("<button>").addClass(`btn-floating btn ${todo.type_color_accent} ${todo.type_color} ${todo.type_name}`)
         const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`${todo.type_img}`);
 
         const $scoreBadge = $("<button>").addClass(`btn-floating btn z-depth-0 yellow accent-3 offset-s1`)
         const $scoreBadgeIcon = $("<i>").addClass("material-icons").text("stars");
+
+        const $databseBadge = $("<button>").addClass(`btn-floating btn z-depth-0 pink darken-3 offset-s1`)
+        const $databseBadgeIcon = $("<i>").addClass("material-icons").text("favorite");
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
@@ -116,6 +119,8 @@ $(document).ready(function () {
           $scoreBadge.append($scoreBadgeIcon);
           $divRightBottom.append($scoreBadge);
         }
+        $databseBadge.append($databseBadgeIcon);
+        $divRightBottom.append($databseBadge);
 
         $divBtn.append($doMeBtn);
         $doMeBtn.append($doMeUncheckedIcon);
@@ -203,11 +208,11 @@ $(document).ready(function () {
                 .addClass("pink darken-3")
                 .children()
                 .removeClass("pink-text text-darken-3")
-                .text("check_box");
+                .text("check");
               setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
-        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
         const $divRightBottom = $("<div>").addClass("right-bottom");
 
@@ -330,12 +335,12 @@ $(document).ready(function () {
                   .addClass("pink darken-3")
                   .children()
                   .removeClass("pink-text text-darken-3")
-                  .text("check_box");
+                  .text("check");
                 setTimeout(() => { $article.hide("fast") }, 900);
               });
           })
 
-        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
         const $divRightBottom = $("<div>").addClass("right-bottom");
 
@@ -457,11 +462,11 @@ $(document).ready(function () {
                 .addClass("pink darken-3")
                 .children()
                 .removeClass("pink-text text-darken-3")
-                .text("check_box");
+                .text("check");
               setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
-        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
         const $divRightBottom = $("<div>").addClass("right-bottom");
 
@@ -574,11 +579,11 @@ $(document).ready(function () {
               .addClass("pink darken-3")
               .children()
               .removeClass("pink-text text-darken-3")
-              .text("check_box");
+              .text("check");
             setTimeout(() => { $article.hide("fast") }, 900);
           });
 
-        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
         const $divRightBottom = $("<div>").addClass("right-bottom");
 
@@ -691,11 +696,11 @@ $(document).ready(function () {
                 .addClass("pink darken-3")
                 .children()
                 .removeClass("pink-text text-darken-3")
-                .text("check_box");
+                .text("check");
               setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
-          const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+          const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
 
           const $divRightBottom = $("<div>").addClass("right-bottom");
@@ -822,11 +827,11 @@ $(document).ready(function () {
               .addClass("pink darken-3")
               .children()
               .removeClass("pink-text text-darken-3")
-              .text("check_box");
+              .text("check");
             setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
-          const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+          const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`add_circle_outline`);
 
 
           const $divRightBottom = $("<div>").addClass("right-bottom");

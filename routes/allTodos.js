@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = ({ db, axios }) => {
 
   // Temp Tokens
-  const musicAccessToken = 'BQCiyREp2dQ3aa1KrsqQtIZPK5B3-fYzXzP3cAbiSo-SrUbbWBgQiCqZHGBdCez-gA42Oo5cK9LSKBdRgaRro58BSFg-o2r0BCjVHAIPFSdC6Tn_WGtqSGGPuoUiqwCM3c5eIHvVy6okSmHxrCcwG3YOeiiq1cE';
+  const musicAccessToken = 'BQDZW1JSgX0rLg5unEoitDRBWGu-lvvqgAIBCAXvqASPKTZA2r1jgRh1JrAw5xWX0j1a4FvAeXz8LIblrT3edFvMaJQP277pRi7hIKP9ccTu8WYsuKZLqGi7_ayBlgBBX3PAX9jyn5gM1Blxj0uDzk67oFFV0qk';
 
   router.get("/", (req, res) => {
 
@@ -20,10 +20,27 @@ module.exports = ({ db, axios }) => {
 
     // DB Query
     const queryString = `
-    SELECT *,todos.img as todo_img, todos.name as todo_name,types.name as type_name,todos.todo_id
-    FROM todos
-    JOIN types ON todos.type_id = types.type_id
-    WHERE todos.name ILIKE $1
+    SELECT
+    td.todo_id       AS todo_id,
+    td.name          AS todo_name,
+    td.author        AS author,
+    td.subtype       AS subtype,
+    td.year          AS year,
+    td.location      AS todo_location,
+    td.api_id        AS api_id,
+    td.genre         AS genre,
+    td.url           AS todo_url,
+    td.img           AS todo_img,
+    td.age_rating    AS age_rating,
+    td.user_rating   AS todo_user_rating,
+
+    t.name           AS type_name,
+    t.color          AS type_color,
+    t.color_accent   AS type_color_accent,
+    t.img            AS type_img
+    FROM todos td
+    JOIN types t ON td.type_id = t.type_id
+    WHERE td.name ILIKE $1
     ;`;
     const values = ['%' + searchText + '%']
     const todoEndpoint = db.query(queryString, values)
