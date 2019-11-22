@@ -52,7 +52,8 @@ module.exports = ({db, axios}) => {
       });
   });
   router.put("/:id", (req, res) => {
-    const id = `${req.params.id}`;
+    console.log(req.body)
+    const id = `${req.body.userTodoId}`;
     db.query(`
       UPDATE user_todos
       SET done = 'true'

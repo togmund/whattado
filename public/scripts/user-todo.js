@@ -60,23 +60,33 @@ $(document).ready(() => {
         const $year = $("<span>").addClass("year").text(userTodo.year);
         const $genre = $("<span>").addClass("genre").text(userTodo.genre);
         const $divBtn = $("<div>").addClass("right-top-btn");
-        const todoId = userTodo.todo_id;
+        const userTodoId = userTodo.user_todo_id;
         const $doMeBtn = $("<button>")
-          .addClass("do-me btn-large")
-          .text("do me")
+          .addClass("btn-floating btn grey lighten-4")
           .click(() => {
-            $.ajax(`/userTodos/new`, {
-              method: "POST",
+            event.preventDefault();
+            $.ajax(`/userTodos/${userTodoId}`, {
+              method: "put",
               contentType: "application/json",
               data: JSON.stringify({
-                todoId: todoId
-              }).done(() => {
+                userTodoId: userTodoId
               })
+            }).done(() => {
+              $doMeBtn
+                .removeClass("grey lighten-4")
+                .addClass("pink darken-3")
+              .children()
+                .removeClass("pink-text text-darken-3")
+                .text(check_box);
+              setTimeout(() => {$article.hide("fast")},2000);
             });
           });
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+
         const $divRightBottom = $("<div>").addClass("card-action").text(userTodo.todo_user_rating);
         const $typeBadge = $("<button>").addClass(`btn-floating btn ${userTodo.type_color_accent} ${userTodo.type_color} ${userTodo.type_name}`)
         const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`${userTodo.type_img}`);
+
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
@@ -91,6 +101,7 @@ $(document).ready(() => {
         $divRightTop.append($divRightTopText);
         $divRightTop.append($divBtn);
         $divBtn.append($doMeBtn);
+        $doMeBtn.append($doMeUncheckedIcon);
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
         $divRightTopText.append($author);
