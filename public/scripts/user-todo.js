@@ -15,28 +15,29 @@ $(document).ready(() => {
     const group = $(this).find(".group").val();
     const family = $(this).find(".family").val();
 
-    const $formValues = {oneHour, threeHours, halfDay, allDay, solo, duo, group, family};
+    const formValues = {oneHour, threeHours, halfDay, allDay, solo, duo, group, family};
 
     const scoreMatrix = function (toggles, todo) {
+      console.log(todo);
       const filterScores = {
         oneHourmovies: -5,
         oneHourbooks: 2,
         oneHourmusic: 5,
-        oneHoursestaurants: 2,
+        oneHourrestaurants: 2,
         threeHoursmovies: 5,
         threeHoursbooks: 2,
         threeHoursmusic: 3,
         threeHoursrestaurants: 2,
-        sixHoursmovies: 2,
-        sixHoursbooks: 1,
-        sixHoursrestaurants: 1,
-        oneDaymovies: 2,
-        oneDaysbooks: 1,
-        oneDaymusic: 1,
-        oneDayrestaurants: 1,
+        halfDaymovies: 2,
+        halfDaybooks: 1,
+        halfDayrestaurants: 1,
+        allDaymovies: 2,
+        allDaybooks: 1,
+        allDaymusic: 1,
+        allDayrestaurants: 1,
 
         solomovies: 1,
-        solomooks: 5,
+        solobooks: 5,
         solomusic: 5,
         solorestaurants: 1,
         duomovies: 2,
@@ -60,8 +61,11 @@ $(document).ready(() => {
       }
       const scoreOne = filterScores[toggledRes[0] + todo];
       const scoreTwo = filterScores[toggledRes[1] + todo];
+      // console.log(scoreOne);
+      // console.log(scoreTwo);
 
-      return finalScore = scoreOne + scoreTwo;
+      return finalScore = parseInt(scoreOne) + parseInt(scoreTwo) + Math.random();
+
       //loop through form values and retreive keys with the value of true
       //Using those two criteria we calculate the score in relation to todo.type_id
       //return a number and assign the number as a class to the article container
@@ -71,7 +75,7 @@ $(document).ready(() => {
 
     $.ajax("/userTodos",{
       method: "GET",
-      data: $formValues
+      data: formValues
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
@@ -79,7 +83,7 @@ $(document).ready(() => {
 
         const $article = $("<article>").addClass(
           `card row ${userTodo.type_name}`
-        );
+        ).attr('data-score', scoreMatrix(formValues, userTodo.type_name));
         if ($(`.types button.${userTodo.type_name}`).val() === "false") {
           $article.hide();
         }
@@ -166,8 +170,18 @@ $(document).ready(() => {
         $doMeBtn.append($doMeUncheckedIcon);
 
         $todoContainer.append($article);
-      }
 
+        // console.log($article.data("score"));
+        $todoContainer
+          .find("article")
+          .sort(function(a, b) {
+            // console.log(a.data("score"));
+            // console.log(a.val);
+
+            return b.dataset.score - a.dataset.score;
+          })
+          .appendTo($todoContainer);
+      }
       $(".search-form").hide();
       $("div.times").slideToggle("fast");
       $("div.groups").slideToggle("fast");
