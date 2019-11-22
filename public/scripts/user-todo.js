@@ -28,39 +28,40 @@ $(document).ready(() => {
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
+        console.log(userTodo);
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
-          `card horizontal ${todo.type_name}`
+          `card horizontal ${userTodo.type_name}`
         );
-        if ($(`.types button.${todo.type_name}`).val() === "false") {
+        if ($(`.types button.${userTodo.type_name}`).val() === "false") {
           $article.hide();
         }
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $("<img>")
           .addClass("image")
-          .attr("src", todo.todo_img);
+          .attr("src", userTodo.todo_img);
         const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
         const $divLeftBottomBtn = $(`<a>`)
         .addClass(`url`)
           .attr({
-            href: todo.todo_url,
+            href: userTodo.todo_url,
             target: "_blank"
           })
-          .text(todo.type_name + ' link');;
+          .text(userTodo.type_name + ' link');;
 
         const $divRight = $(`<div>`).addClass(`right`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
           .addClass(`todo-name`)
-          .text(todo.todo_name);
-        const $author = $("<span>").addClass("author").text(todo.author);
-        const $year = $("<span>").addClass("year").text(todo.year);
-        const $genre = $("<span>").addClass("genre").text(todo.genre);
+          .text(userTodo.todo_name);
+        const $author = $("<span>").addClass("author").text(userTodo.author);
+        const $year = $("<span>").addClass("year").text(userTodo.year);
+        const $genre = $("<span>").addClass("genre").text(userTodo.genre);
         const $divBtn = $("<div>").addClass("right-top-btn");
-        const todoId = todo.todo_id;
+        const todoId = userTodo.todo_id;
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
           .text("do me")

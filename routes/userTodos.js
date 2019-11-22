@@ -34,7 +34,7 @@ module.exports = ({db, axios}) => {
           u_t.user_todo_id AS user_todo_id,
           u_t.done         AS done,
           u_t.done_count   AS done_count,
-          u_t.user_id      AS user_id,
+          u_t.user_id      AS user_id
 
     FROM user_todos u_t
     JOIN todos td ON td.todo_id = u_t.todo_id
@@ -72,20 +72,23 @@ module.exports = ({db, axios}) => {
     // console.log(req.body.todoId);
     // if (req.session.user_id) {
     let queryString =`
-    INSERT INTO user_todos (user_id,todo_id,done)
-    VALUES ($1,$2,$3)
+    INSERT INTO user_todos (user_id,todo_id)
+    VALUES ($1,$2)
     ;`;
-    let values = [1,req.body.todoId,false]
-    db.query(queryString,values)
+    const userIDNo = parseInt(req.session.userId);
+    const todoID = req.body.todoId;
+    let values = [userIDNo, todoID];
+    console.log('******', values);
+    db.query(queryString, values)
       // .then(data => {
       //   const allTodos = data.rows;
       //   res.json(allTodos);
       // })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+      // .catch(err => {
+      //   res
+      //     .status(500)
+      //     .json({ error: err.message });
+      // });
     // }
   });
   return router;
