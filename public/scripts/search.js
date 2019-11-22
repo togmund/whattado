@@ -580,9 +580,6 @@ $(document).ready(function () {
 
         const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
 
-        const $divRightBottom = $("<div>")
-          .addClass("right-bottom")
-
         const $divRightBottom = $("<div>").addClass("right-bottom");
 
         const $typeBadge = $("<button>").addClass(`btn-floating btn darken-3 teal books`)
@@ -604,8 +601,6 @@ $(document).ready(function () {
         $divRightTop.append($divBtn);
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
-        $divRightTopText.append($author);
-        $divRightTopText.append($year);
         $divRightTopText.append($genre);
 
 
@@ -650,7 +645,6 @@ $(document).ready(function () {
         const $divRight = $(`<div>`).addClass(`card-stacked col s9`);
         const $divRightTop = $(`<div>`).addClass(`card-content`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
-
 
         const $todoName = $(`<h5>`)
           .addClass(`todo-name`)
@@ -701,6 +695,8 @@ $(document).ready(function () {
               setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
+          const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+
 
           const $divRightBottom = $("<div>").addClass("right-bottom");
 
@@ -723,9 +719,6 @@ $(document).ready(function () {
           $divRightTop.append($divBtn);
           $divRightTop.append($divRightTopText);
           $divRightTopText.append($todoName);
-          $divRightTopText.append($author);
-          $divRightTopText.append($year);
-          $divRightTopText.append($genre);
 
 
           $divRight.append($divRightBottom);
@@ -746,41 +739,48 @@ $(document).ready(function () {
       // Restaurant API results
       for (todo of allTodos[6]) {
 
-        let rating = ''
-        if (todo.restaurant.user_ratings) {
-          rating = todo.restaurant.user_ratings.aggregate_rating
-        } else { rating = '' }
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(`card horizontal restaurants row`);
         if ($(".types button.restaurants").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left col s4`);
-        const $divLeftTop = $(`<div>`).addClass(`left-top`);
+        const $divLeft = $(`<div>`).addClass(`card-stacked col s3`);
+        const $divLeftTop = $(`<div>`).addClass(`section`);
         const $divLeftImg = $("<img>")
-          .addClass("image")
+          .addClass("image circle")
+          .attr("style", "height: 95px; width: 95px; object-fit: cover;")
           .attr("src", todo.restaurant.thumb);
-        const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
-        const $divLeftBottomBtn = $(`<a>`)
-          .addClass(`url`)
-          .attr({ href: todo.restaurant.url, target: "_blank" })
-          .text("Zomato");
 
-        const $divRight = $(`<div>`).addClass(`right col s8`);
-        const $divRightTop = $(`<div>`).addClass(`right-top`);
-        const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
-        const $todoName = $(`<div>`)
+        const $divLeftBottom = $(`<div>`).addClass(`card-action`);
+        const $divLeftBottomBtn = $(`<a>`)
+          .addClass(`btn url grey lighten-4`)
+          .attr({ href: todo.restaurant.url, target: "_blank" })
+          .attr("style", "border-radius:15px;");
+        const $linkIcon = $("<i>")
+          .addClass(`amber-text text-darken-4 material-icons`)
+          .text("link");
+
+          const $divRight = $(`<div>`).addClass(`card-stacked col s9`);
+          const $divRightTop = $(`<div>`).addClass(`card-content`);
+          const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
+
+          const $todoName = $(`<h5>`)
           .addClass(`todo-name`)
           .text(todo.restaurant.name);
-        const $author = $("<span>")
-          .addClass("author")
+        const $location = $("<span>")
+          .addClass("location")
           .text(todo.restaurant.location.address);
         const $year = $("<span>").addClass("year");
         const $genre = $("<span>")
           .addClass("genre")
           .text(todo.restaurant.cuisines);
         const $divBtn = $("<div>").addClass("right-top-btn");
+
+        let rating = ''
+        if (todo.restaurant.user_ratings) {
+          rating = todo.restaurant.user_ratings.aggregate_rating
+        } else { rating = '' }
 
         const _parsed_api_id = todo.restaurant.id;
         const _parsed_name = todo.restaurant.name;
@@ -791,9 +791,10 @@ $(document).ready(function () {
         const _parsed_user_rating = rating;
         const _parsed_type_id = 4;
 
+
+
         const $doMeBtn = $("<button>")
-          .addClass("do-me btn-large")
-          .text("do me")
+        .addClass("btn-floating right btn grey lighten-4")
           .click(() => {
             $.ajax(`/allTodos/new`, {
               method: "POST",
@@ -816,27 +817,57 @@ $(document).ready(function () {
                   todoId: data.rows[0].todo_id
                 })
               });
+              $doMeBtn
+              .removeClass("grey lighten-4")
+              .addClass("pink darken-3")
+              .children()
+              .removeClass("pink-text text-darken-3")
+              .text("check_box");
+            setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
-        const $divRightBottom = $("<div>").addClass("right-bottom").text(rating);
+          const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
 
-        $article.append($divLeft);
-        $divLeft.append($divLeftTop);
-        $divLeftTop.append($divLeftImg);
-        $divLeft.append($divLeftBottom);
-        $divLeftBottom.append($divLeftBottomBtn);
-        $article.append($divRight);
-        $divRight.append($divRightBottom);
-        $divRight.append($divRightTop);
-        $divRightTop.append($divRightTopText);
-        $divRightTop.append($divBtn);
-        $divBtn.append($doMeBtn);
-        $divRightTop.append($divRightTopText);
-        $divRightTopText.append($todoName);
-        $divRightTopText.append($author);
-        $divRightTopText.append($year);
-        $divRightTopText.append($genre);
-        $todoContainer.append($article);
+
+          const $divRightBottom = $("<div>").addClass("right-bottom");
+
+          const $typeBadge = $("<button>").addClass(`btn-floating btn darken-4 amber restaurants`)
+          const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`restaurant`);
+
+          const $scoreBadge = $("<button>").addClass(`btn-floating btn z-depth-0 yellow accent-3 offset-s1`)
+          const $scoreBadgeIcon = $("<i>").addClass("material-icons").text("stars");
+
+          $article.append($divLeft);
+          $divLeft.append($divLeftTop);
+          $divLeftTop.append($divLeftImg);
+          $divLeft.append($divLeftBottom);
+          $divLeftBottom.append($divLeftBottomBtn);
+          $divLeftBottomBtn.append($linkIcon);
+
+          $article.append($divRight);
+          $divRight.append($divRightTop);
+
+          $divRightTop.append($divBtn);
+          $divRightTop.append($divRightTopText);
+          $divRightTopText.append($todoName);
+          $divRightTopText.append($location);
+          $divRightTopText.append($year);
+          $divRightTopText.append($genre);
+
+
+          $divRight.append($divRightBottom);
+
+          $divRightBottom.append($typeBadge);
+          $typeBadge.append($typeBadgeIcon);
+          if (rating > 3.5) {
+            $scoreBadge.append($scoreBadgeIcon);
+            $divRightBottom.append($scoreBadge);
+          }
+
+          $divBtn.append($doMeBtn);
+          $doMeBtn.append($doMeUncheckedIcon);
+
+          $todoContainer.append($article);
       }
     });
   });
