@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = ({ db, axios }) => {
 
   // Temp Tokens
-  const musicAccessToken = 'BQClpknDYOV42F2iBTlXytg2GP55i8u-TQfI90S4qyiukL8yg_NYPrVTRDTz4VvdmcUk0-JYseJsXOtf6VLBijlqf8T_1vhEuSJY8Jmezy2bp7p2z8TY7-nDC7lbVV7LxPBURpf3iZ_jrONjrQiTw1oAb71JFs8';
+  const musicAccessToken = 'BQDIls0jhHmvWwOGulCEpVhMtM5zz7XA7FV47jVwwU34F37olm__uTs8IPI2ySdq3RbijZhSmZBSLFCL6u0wgCDXr2dez4TLghiaScqeyeRSahzmIMtk8SHn76vdRvR1o8IGXThm55LTHjGbnh4YlFqX8oT7EYw';
 
   router.get("/", (req, res) => {
 

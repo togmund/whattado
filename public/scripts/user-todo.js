@@ -78,29 +78,31 @@ $(document).ready(() => {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
-          `card horizontal ${userTodo.type_name}`
+          `card row ${userTodo.type_name}`
         );
         if ($(`.types button.${userTodo.type_name}`).val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`card-stacked`);
-        const $divLeftTop = $(`<div>`).addClass(`card-image`);
+        const $divLeft = $(`<div>`).addClass(`card-stacked col s3`);
+        const $divLeftTop = $(`<div>`).addClass(`section`);
         const $divLeftImg = $("<img>")
-          .addClass("image")
-          .attr("src", userTodo.todo_img);
+          .addClass("image circle")
+          .attr("src", userTodo.todo_img)
+          .attr("style","height: 95px; width: 95px; object-fit: cover;");
         const $divLeftBottom = $(`<div>`).addClass(`card-action`);
         const $divLeftBottomBtn = $(`<a>`)
-        .addClass(`url`)
+        .addClass(`btn url`)
           .attr({
             href: userTodo.todo_url,
             target: "_blank"
           })
+          .attr("style","border-radius:10px;")
           .text(userTodo.type_name + ' link');;
 
-        const $divRight = $(`<div>`).addClass(`card-stacked`);
+        const $divRight = $(`<div>`).addClass(`card-stacked col s9`);
         const $divRightTop = $(`<div>`).addClass(`card-content`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
-        const $todoName = $(`<div>`)
+        const $todoName = $(`<h4>`)
           .addClass(`todo-name`)
           .text(userTodo.todo_name);
         const $author = $("<span>").addClass("author").text(userTodo.author);
@@ -109,7 +111,7 @@ $(document).ready(() => {
         const $divBtn = $("<div>").addClass("right-top-btn");
         const userTodoId = userTodo.user_todo_id;
         const $doMeBtn = $("<button>")
-          .addClass("btn-floating btn grey lighten-4")
+          .addClass("btn-floating right btn grey lighten-4")
           .click(() => {
             event.preventDefault();
             $.ajax(`/userTodos/${userTodoId}`, {
@@ -125,7 +127,7 @@ $(document).ready(() => {
               .children()
                 .removeClass("pink-text text-darken-3")
                 .text("check_box");
-              setTimeout(() => {$article.hide("fast")},1500);
+              setTimeout(() => {$article.hide("fast")},900);
             });
           });
         const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
@@ -140,20 +142,29 @@ $(document).ready(() => {
         $divLeftTop.append($divLeftImg);
         $divLeft.append($divLeftBottom);
         $divLeftBottom.append($divLeftBottomBtn);
+
         $article.append($divRight);
-        $divRight.append($divRightBottom);
-        $divRightBottom.append($typeBadge);
-        $typeBadge.append($typeBadgeIcon);
         $divRight.append($divRightTop);
-        $divRightTop.append($divRightTopText);
+
         $divRightTop.append($divBtn);
-        $divBtn.append($doMeBtn);
-        $doMeBtn.append($doMeUncheckedIcon);
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
         $divRightTopText.append($author);
         $divRightTopText.append($year);
         $divRightTopText.append($genre);
+
+
+        $divRight.append($divRightBottom);
+
+
+
+
+        $divRightBottom.append($typeBadge);
+        $typeBadge.append($typeBadgeIcon);
+
+        $divBtn.append($doMeBtn);
+        $doMeBtn.append($doMeUncheckedIcon);
+
         $todoContainer.append($article);
       }
 
