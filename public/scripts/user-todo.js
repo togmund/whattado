@@ -28,7 +28,6 @@ $(document).ready(() => {
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
-        console.log(userTodo);
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
@@ -37,12 +36,12 @@ $(document).ready(() => {
         if ($(`.types button.${userTodo.type_name}`).val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
-        const $divLeftTop = $(`<div>`).addClass(`left-top`);
+        const $divLeft = $(`<div>`).addClass(`card-stacked`);
+        const $divLeftTop = $(`<div>`).addClass(`card-image`);
         const $divLeftImg = $("<img>")
           .addClass("image")
           .attr("src", userTodo.todo_img);
-        const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
+        const $divLeftBottom = $(`<div>`).addClass(`card-action`);
         const $divLeftBottomBtn = $(`<a>`)
         .addClass(`url`)
           .attr({
@@ -51,8 +50,8 @@ $(document).ready(() => {
           })
           .text(userTodo.type_name + ' link');;
 
-        const $divRight = $(`<div>`).addClass(`right`);
-        const $divRightTop = $(`<div>`).addClass(`right-top`);
+        const $divRight = $(`<div>`).addClass(`card-stacked`);
+        const $divRightTop = $(`<div>`).addClass(`card-content`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
           .addClass(`todo-name`)
@@ -72,12 +71,12 @@ $(document).ready(() => {
               data: JSON.stringify({
                 todoId: todoId
               }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
-        const $divRightBottom = $("<div>").addClass("right-bottom").text(todo.todo_user_rating);
-        const $typeBadge = $("<button>").addClass(`btn-floating btn z-depth-0 ${todo.type_color_accent} ${todo.type_color} ${todo.type_name}`)
+        const $divRightBottom = $("<div>").addClass("card-action").text(userTodo.todo_user_rating);
+        const $typeBadge = $("<button>").addClass(`btn-floating btn ${userTodo.type_color_accent} ${userTodo.type_color} ${userTodo.type_name}`)
+        const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`${userTodo.type_img}`);
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
@@ -87,6 +86,7 @@ $(document).ready(() => {
         $article.append($divRight);
         $divRight.append($divRightBottom);
         $divRightBottom.append($typeBadge);
+        $typeBadge.append($typeBadgeIcon);
         $divRight.append($divRightTop);
         $divRightTop.append($divRightTopText);
         $divRightTop.append($divBtn);
@@ -98,6 +98,7 @@ $(document).ready(() => {
         $divRightTopText.append($genre);
         $todoContainer.append($article);
       }
+
       $(".search-form").hide();
       $("div.times").slideToggle("fast");
       $("div.groups").slideToggle("fast");

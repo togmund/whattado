@@ -6,7 +6,6 @@ $(document).ready(function() {
   })
   $("#login-modal button").on("click",() => {
     const $loginId = $("#login-id").val();
-    console.log("on click",$loginId);
     $.ajax("/login/", {
       method:"POST",
       data:{ loginId:$loginId }

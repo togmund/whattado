@@ -69,8 +69,6 @@ module.exports = ({db, axios}) => {
   });
 
   router.post("/:id/add", (req, res) => {
-    // console.log(req.body.todoId);
-    // if (req.session.user_id) {
     let queryString =`
     INSERT INTO user_todos (user_id,todo_id)
     VALUES ($1,$2)
@@ -78,18 +76,7 @@ module.exports = ({db, axios}) => {
     const userIDNo = parseInt(req.session.userId);
     const todoID = req.body.todoId;
     let values = [userIDNo, todoID];
-    console.log('******', values);
     db.query(queryString, values)
-      // .then(data => {
-      //   const allTodos = data.rows;
-      //   res.json(allTodos);
-      // })
-      // .catch(err => {
-      //   res
-      //     .status(500)
-      //     .json({ error: err.message });
-      // });
-    // }
   });
   return router;
 };
