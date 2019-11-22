@@ -15,13 +15,7 @@ $(document).ready(() => {
     const group = $(this).find(".group").val();
     const family = $(this).find(".family").val();
 
-    // const movies = $(this).find(".movies").val();
-    // const books = $(this).find(".books").val();
-    // const music = $(this).find(".music").val();
-    // const restaurants = $(this).find(".restaurants").val();
-
     const $formValues = {oneHour, threeHours, halfDay, allDay, solo, duo, group, family};
-    const todotypes = {movies, books, music, restaurants};
 
     const scoreMatrix = function (toggles, todo) {
       const filterScores = {
@@ -81,7 +75,6 @@ $(document).ready(() => {
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
-        // console.log(userTodo);
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
@@ -90,12 +83,12 @@ $(document).ready(() => {
         if ($(`.types button.${userTodo.type_name}`).val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
-        const $divLeftTop = $(`<div>`).addClass(`left-top`);
+        const $divLeft = $(`<div>`).addClass(`card-stacked`);
+        const $divLeftTop = $(`<div>`).addClass(`card-image`);
         const $divLeftImg = $("<img>")
           .addClass("image")
           .attr("src", userTodo.todo_img);
-        const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
+        const $divLeftBottom = $(`<div>`).addClass(`card-action`);
         const $divLeftBottomBtn = $(`<a>`)
         .addClass(`url`)
           .attr({
@@ -104,8 +97,8 @@ $(document).ready(() => {
           })
           .text(userTodo.type_name + ' link');;
 
-        const $divRight = $(`<div>`).addClass(`right`);
-        const $divRightTop = $(`<div>`).addClass(`right-top`);
+        const $divRight = $(`<div>`).addClass(`card-stacked`);
+        const $divRightTop = $(`<div>`).addClass(`card-content`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
           .addClass(`todo-name`)
@@ -114,22 +107,33 @@ $(document).ready(() => {
         const $year = $("<span>").addClass("year").text(userTodo.year);
         const $genre = $("<span>").addClass("genre").text(userTodo.genre);
         const $divBtn = $("<div>").addClass("right-top-btn");
-        const todoId = userTodo.todo_id;
+        const userTodoId = userTodo.user_todo_id;
         const $doMeBtn = $("<button>")
-          .addClass("do-me btn-large")
-          .text("do me")
+          .addClass("btn-floating btn grey lighten-4")
           .click(() => {
-            $.ajax(`/userTodos/new`, {
-              method: "POST",
+            event.preventDefault();
+            $.ajax(`/userTodos/${userTodoId}`, {
+              method: "put",
               contentType: "application/json",
               data: JSON.stringify({
-                todoId: todoId
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
+                userTodoId: userTodoId
               })
+            }).done(() => {
+              $doMeBtn
+                .removeClass("grey lighten-4")
+                .addClass("pink darken-3")
+              .children()
+                .removeClass("pink-text text-darken-3")
+                .text("check_box");
+              setTimeout(() => {$article.hide("fast")},1500);
             });
           });
-        const $divRightBottom = $("<div>").addClass("right-bottom").text(todo.todo_user_rating);
+        const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
+
+        const $divRightBottom = $("<div>").addClass("card-action").text(userTodo.todo_user_rating);
+        const $typeBadge = $("<button>").addClass(`btn-floating btn ${userTodo.type_color_accent} ${userTodo.type_color} ${userTodo.type_name}`)
+        const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`${userTodo.type_img}`);
+
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
@@ -138,10 +142,13 @@ $(document).ready(() => {
         $divLeftBottom.append($divLeftBottomBtn);
         $article.append($divRight);
         $divRight.append($divRightBottom);
+        $divRightBottom.append($typeBadge);
+        $typeBadge.append($typeBadgeIcon);
         $divRight.append($divRightTop);
         $divRightTop.append($divRightTopText);
         $divRightTop.append($divBtn);
         $divBtn.append($doMeBtn);
+        $doMeBtn.append($doMeUncheckedIcon);
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
         $divRightTopText.append($author);
@@ -149,6 +156,7 @@ $(document).ready(() => {
         $divRightTopText.append($genre);
         $todoContainer.append($article);
       }
+
       $(".search-form").hide();
       $("div.times").slideToggle("fast");
       $("div.groups").slideToggle("fast");

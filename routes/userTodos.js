@@ -40,6 +40,7 @@ module.exports = ({db, axios}) => {
     JOIN todos td ON td.todo_id = u_t.todo_id
     JOIN types t ON t.type_id = td.type_id
     AND u_t.user_id = $1
+    AND done = FALSE
     ;`
     const injectionProtection = [req.session.userId]
     db.query(queryFormat, injectionProtection)
@@ -52,7 +53,8 @@ module.exports = ({db, axios}) => {
       });
   });
   router.put("/:id", (req, res) => {
-    const id = `${req.params.id}`;
+    console.log(req.body)
+    const id = `${req.body.userTodoId}`;
     db.query(`
       UPDATE user_todos
       SET done = 'true'
@@ -69,8 +71,6 @@ module.exports = ({db, axios}) => {
   });
 
   router.post("/:id/add", (req, res) => {
-    // console.log(req.body.todoId);
-    // if (req.session.user_id) {
     let queryString =`
     INSERT INTO user_todos (user_id,todo_id)
     VALUES ($1,$2)
@@ -78,18 +78,7 @@ module.exports = ({db, axios}) => {
     const userIDNo = parseInt(req.session.userId);
     const todoID = req.body.todoId;
     let values = [userIDNo, todoID];
-    console.log('******', values);
     db.query(queryString, values)
-      // .then(data => {
-      //   const allTodos = data.rows;
-      //   res.json(allTodos);
-      // })
-      // .catch(err => {
-      //   res
-      //     .status(500)
-      //     .json({ error: err.message });
-      // });
-    // }
   });
   return router;
 };
