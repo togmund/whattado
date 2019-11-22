@@ -77,6 +77,7 @@ $(document).ready(() => {
             });
           });
         const $divRightBottom = $("<div>").addClass("right-bottom").text(todo.todo_user_rating);
+        const $typeBadge = $("<button>").addClass(`btn-floating btn z-depth-0 ${todo.type_color_accent} ${todo.type_color} ${todo.type_name}`)
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
@@ -85,6 +86,7 @@ $(document).ready(() => {
         $divLeftBottom.append($divLeftBottomBtn);
         $article.append($divRight);
         $divRight.append($divRightBottom);
+        $divRightBottom.append($typeBadge);
         $divRight.append($divRightTop);
         $divRightTop.append($divRightTopText);
         $divRightTop.append($divBtn);
