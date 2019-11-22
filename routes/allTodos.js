@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = ({ db, axios }) => {
 
   // Temp Tokens
-  const musicAccessToken = 'BQA3oXus_qu_EMaKQFxVktLbXKF6uNlyKRL2fE4wLYuTiCVQVg2QV8_bhd1BcnHLbW-NaztnAdrrnLqYg4EYiz-Ga_hNILiJzjQhyjB5he3pWUUMIqJ9LdZckt7TMcw3k0UuErgKHb7i9MQyopoyg6wUf0GqapY'
+  const musicAccessToken = 'BQCZsmNnWHS30fXFtNhW3Tpkpl-JXKOv2ErR6RKKWq0LLVGqPsUueHmiZCypRrTIIcvoQOaSSIabNbbVsTlnjg-eeaPGOAwESQer9eT2KSa_fquzOtOhPq7AYZj8hX1jQVvWa8Yg7PW0fvzoJAHKPMEZl4ZVto4'
 
   router.get("/", (req, res) => {
 
@@ -71,5 +71,40 @@ module.exports = ({ db, axios }) => {
       });
 
   });
+  router.post("/new", (req, res) => {
+
+    // Sanitize
+
+    // DB Query
+    const todoObject = req.body;
+    insertObj(todoObject, `todos`, db);
+    res.send('Yaaay!');
+
+;
+
+    // const values = ['%' +  + '%']
+    // const todoEndpoint = db.query(queryString, values);
+    console.log(req.body);
+
+
+  });
   return router;
 };
+
+function insertObj(obj, table, db) {
+
+  const objArr = Object.entries(obj);
+  const objKeys = objArr.map(e => e[0]);
+  const objVals = objArr.map( (e) => {
+    if (typeof e[1] === 'string') {
+     return `'${e[1]}'`;
+    }
+    return e[1];
+  });
+  return db.query(`INSERT INTO
+  ${table}
+  ( ${objKeys})
+  VALUES ( ${objVals} )
+  ;`);
+
+}
