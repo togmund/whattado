@@ -10,34 +10,38 @@ const router = express.Router();
 
 module.exports = ({db, axios}) => {
   router.get("/", (req, res) => {
-    const requestQuery = req.query;
-    const formArray = [];
-    for (let queryValue in requestQuery) {
-      if (requestQuery[queryValue] === 'true')
-      formArray.push(queryValue);
-    }
-    const psFriendly = `'${formArray.join("', '")}'`
+
     const queryFormat = `
-    SELECT u_t.user_todo_id,
-           u_t.user_id,
-           td.name AS todo_name,
-           u_t.done AS done,
-           t.name AS type_name,
-           t.color AS type_color,
-           t.color_accent AS type_color_accent,
-           t.img as type_img,
-           done_count
+    SELECT
+          td.todo_id       AS todo_id,
+          td.name          AS todo_name,
+          td.author        AS author,
+          td.subtype       AS subtype,
+          td.year          AS year,
+          td.location      AS todo_location,
+          td.api_id        AS api_id,
+          td.genre         AS genre,
+          td.url           AS todo_url,
+          td.img           AS todo_img,
+          td.age_rating    AS age_rating,
+          td.user_rating   AS todo_user_rating,
+
+          t.name           AS type_name,
+          t.color          AS type_color,
+          t.color_accent   AS type_color_accent,
+          t.img            AS type_img,
+
+          u_t.user_todo_id AS user_todo_id,
+          u_t.done         AS done,
+          u_t.done_count   AS done_count,
+          u_t.user_id      AS user_id,
+
     FROM user_todos u_t
     JOIN todos td ON td.todo_id = u_t.todo_id
     JOIN types t ON t.type_id = td.type_id
-    WHERE t.name IN (${psFriendly})
     AND u_t.user_id = $1
-    AND u_t.done = FALSE
-    ORDER BY todo_name DESC
     ;`
     const injectionProtection = [req.session.userId]
-    console.log(queryFormat);
-    console.log(injectionProtection);
     db.query(queryFormat, injectionProtection)
       .then(data => {
         const userTodos = data.rows;
