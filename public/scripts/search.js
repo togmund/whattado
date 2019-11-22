@@ -26,12 +26,12 @@ $(document).ready(function () {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
-          `card horizontal ${todo.type_name}`
+          `card horizontal ${todo.type_name} row`
         );
         if ($(`.types button.${todo.type_name}`).val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $("<img>")
           .addClass("image")
@@ -45,7 +45,7 @@ $(document).ready(function () {
           })
           .text(todo.type_name + ' link');;
 
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
@@ -54,7 +54,7 @@ $(document).ready(function () {
         const $author = $("<span>").addClass("author").text(todo.author);
         const $year = $("<span>").addClass("year").text(todo.year);
         const $genre = $("<span>").addClass("genre").text(todo.genre);
-        const $divBtn = $("<div>").addClass("right-top-btn");
+        const $divBtn = $("<div>").addClass("right right-top-btn");
         const todoId = todo.todo_id;
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
@@ -94,14 +94,14 @@ $(document).ready(function () {
       for (todo of allTodos[1]) {
         const $todoContainer = $(`.todos.container`);
 
-        const $article = $("<article>").addClass(`card horizontal movies`);
+        const $article = $("<article>").addClass(`card horizontal movies row`);
         if ($(".types button.movies").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left grid-container col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $("<img>")
-          .addClass("image")
+          .addClass("image responsive-img")
           .attr("src", todo.Poster);
         const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
         const $divLeftBottomBtn = $(`<a>`)
@@ -112,7 +112,7 @@ $(document).ready(function () {
           })
           .text("IMDB");
 
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
@@ -190,11 +190,11 @@ $(document).ready(function () {
       // Books api
       for (todo of allTodos[2]) {
         const $todoContainer = $(`.todos.container`);
-        const $article = $("<article>").addClass(`card horizontal books`);
+        const $article = $("<article>").addClass(`card horizontal books row`);
         if ($(".types button.books").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         let $divLeftImg = $("<img>").addClass("image circle");
         let bookImg = "";
@@ -213,7 +213,7 @@ $(document).ready(function () {
           .addClass(`url`)
           .attr({ href: todo.volumeInfo.infoLink, target: "_blank" })
           .text("click");
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
@@ -291,11 +291,11 @@ $(document).ready(function () {
       // Album Card Builder
       for (todo of allTodos[3]) {
         const $todoContainer = $(`.todos.container`);
-        const $article = $("<article>").addClass(`card horizontal music`);
+        const $article = $("<article>").addClass(`card horizontal music row`);
         if ($(".types button.music").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $("<img>")
           .addClass("image circle")
@@ -305,7 +305,7 @@ $(document).ready(function () {
           .addClass(`url`)
           .text(todo.external_urls.spotify);
 
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
@@ -383,11 +383,11 @@ $(document).ready(function () {
       for (todo of allTodos[4]) {
         const $todoContainer = $(`.todos.container`);
 
-        const $article = $("<article>").addClass(`card horizontal music`);
+        const $article = $("<article>").addClass(`card horizontal music row`);
         if ($(".types button.music").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         let $divLeftImg = $("<img>").addClass("image circle");
         let ___img;
@@ -406,7 +406,7 @@ $(document).ready(function () {
           .addClass(`url`)
           .text(todo.external_urls.spotify);
 
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
 
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
@@ -474,11 +474,11 @@ $(document).ready(function () {
       for (todo of allTodos[5]) {
         const $todoContainer = $(`.todos.container`);
 
-        const $article = $("<article>").addClass(`card horizontal music`);
+        const $article = $("<article>").addClass(`card horizontal music row`);
         if ($(".types button.music").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $("<img>")
           .addClass("image circle")
@@ -488,7 +488,7 @@ $(document).ready(function () {
           .addClass(`url`)
           .text(todo.external_urls.spotify);
 
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
 
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
@@ -565,11 +565,11 @@ $(document).ready(function () {
         } else { rating = '' }
         const $todoContainer = $(`.todos.container`);
 
-        const $article = $("<article>").addClass(`card horizontal restaurants`);
+        const $article = $("<article>").addClass(`card horizontal restaurants row`);
         if ($(".types button.restaurants").val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`left`);
+        const $divLeft = $(`<div>`).addClass(`left col s4`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         const $divLeftImg = $("<img>")
           .addClass("image")
@@ -580,7 +580,7 @@ $(document).ready(function () {
           .attr({ href: todo.restaurant.url, target: "_blank" })
           .text("Zomato");
 
-        const $divRight = $(`<div>`).addClass(`right`);
+        const $divRight = $(`<div>`).addClass(`right col s8`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
         const $todoName = $(`<div>`)
