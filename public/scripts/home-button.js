@@ -7,6 +7,6 @@ $(document).ready(function() {
     $(".search-form").hide();
     $("div.times").slideDown("fast");
     $("div.groups").slideDown("fast");
-    $("div.row.section.submit").slideDown("fast");
+    $("div.row.submit").slideDown("fast");
   })
 });

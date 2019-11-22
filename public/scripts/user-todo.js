@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $("form.whattado.container").on("submit", function(event) {
+  $("form.whattado.container").on("submit", function (event) {
 
     event.preventDefault();
 
@@ -15,10 +15,10 @@ $(document).ready(() => {
     const group = $(this).find(".group").val();
     const family = $(this).find(".family").val();
 
-    const formValues = {oneHour, threeHours, halfDay, allDay, solo, duo, group, family};
+    const formValues = { oneHour, threeHours, halfDay, allDay, solo, duo, group, family };
 
     const scoreMatrix = function (toggles, todo) {
-      console.log(todo);
+
       const filterScores = {
         oneHourmovies: -5,
         oneHourbooks: 2,
@@ -55,15 +55,13 @@ $(document).ready(() => {
       }
       let toggledRes = [];
       for (const toggle in toggles) {
-        if(toggles[toggle]) {
+        if (toggles[toggle] === "true") {
           toggledRes.push(toggle);
         }
       }
-      const scoreOne = filterScores[toggledRes[0] + todo];
-      const scoreTwo = filterScores[toggledRes[1] + todo];
-      // console.log(scoreOne);
-      // console.log(scoreTwo);
 
+      const scoreOne = filterScores[`${toggledRes[0]}${todo}`];
+      const scoreTwo = filterScores[toggledRes[1] + todo];
       return finalScore = parseInt(scoreOne) + parseInt(scoreTwo) + Math.random();
 
       //loop through form values and retreive keys with the value of true
@@ -73,7 +71,7 @@ $(document).ready(() => {
       //we'll hide the ones with the lowest score
     }
 
-    $.ajax("/userTodos",{
+    $.ajax("/userTodos", {
       method: "GET",
       data: formValues
     }).done((userTodos) => {
@@ -82,29 +80,32 @@ $(document).ready(() => {
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
-          `card horizontal ${userTodo.type_name}`
+          `card row ${userTodo.type_name}`
         ).attr('data-score', scoreMatrix(formValues, userTodo.type_name));
         if ($(`.types button.${userTodo.type_name}`).val() === "false") {
           $article.hide();
         }
-        const $divLeft = $(`<div>`).addClass(`card-stacked`);
-        const $divLeftTop = $(`<div>`).addClass(`card-image`);
+        const $divLeft = $(`<div>`).addClass(`card-stacked col s3`);
+        const $divLeftTop = $(`<div>`).addClass(`section`);
         const $divLeftImg = $("<img>")
-          .addClass("image")
-          .attr("src", userTodo.todo_img);
+          .addClass("image circle")
+          .attr("src", userTodo.todo_img)
+          .attr("style", "height: 95px; width: 95px; object-fit: cover;");
         const $divLeftBottom = $(`<div>`).addClass(`card-action`);
         const $divLeftBottomBtn = $(`<a>`)
-        .addClass(`url`)
+          .addClass(`btn url grey lighten-4`)
           .attr({
             href: userTodo.todo_url,
             target: "_blank"
           })
-          .text(userTodo.type_name + ' link');;
+          .attr("style", "border-radius:15px;");
+        const $linkIcon = $("<i>").addClass(`${userTodo.type_color}-text text-${userTodo.type_color_accent}  material-icons`).text("link");
 
-        const $divRight = $(`<div>`).addClass(`card-stacked`);
+
+        const $divRight = $(`<div>`).addClass(`card-stacked col s9`);
         const $divRightTop = $(`<div>`).addClass(`card-content`);
         const $divRightTopText = $(`<div>`).addClass(`right-top-text`);
-        const $todoName = $(`<div>`)
+        const $todoName = $(`<h5>`)
           .addClass(`todo-name`)
           .text(userTodo.todo_name);
         const $author = $("<span>").addClass("author").text(userTodo.author);
@@ -113,7 +114,7 @@ $(document).ready(() => {
         const $divBtn = $("<div>").addClass("right-top-btn");
         const userTodoId = userTodo.user_todo_id;
         const $doMeBtn = $("<button>")
-          .addClass("btn-floating btn grey lighten-4")
+          .addClass("btn-floating right btn grey lighten-4")
           .click(() => {
             event.preventDefault();
             $.ajax(`/userTodos/${userTodoId}`, {
@@ -126,17 +127,20 @@ $(document).ready(() => {
               $doMeBtn
                 .removeClass("grey lighten-4")
                 .addClass("pink darken-3")
-              .children()
+                .children()
                 .removeClass("pink-text text-darken-3")
                 .text("check_box");
-              setTimeout(() => {$article.hide("fast")},1500);
+              setTimeout(() => { $article.hide("fast") }, 900);
             });
           });
         const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
 
-        const $divRightBottom = $("<div>").addClass("card-action").text(userTodo.todo_user_rating);
+        const $divRightBottom = $("<div>").addClass("card-action row");
         const $typeBadge = $("<button>").addClass(`btn-floating btn ${userTodo.type_color_accent} ${userTodo.type_color} ${userTodo.type_name}`)
         const $typeBadgeIcon = $("<i>").addClass("material-icons").text(`${userTodo.type_img}`);
+
+        const $scoreBadge = $("<button>").addClass(`btn-floating btn z-depth-0 yellow accent-3 offset-s1`)
+        const $scoreBadgeIcon = $("<i>").addClass("material-icons").text("stars");
 
 
         $article.append($divLeft);
@@ -144,27 +148,37 @@ $(document).ready(() => {
         $divLeftTop.append($divLeftImg);
         $divLeft.append($divLeftBottom);
         $divLeftBottom.append($divLeftBottomBtn);
+        $divLeftBottomBtn.append($linkIcon);
+
         $article.append($divRight);
-        $divRight.append($divRightBottom);
-        $divRightBottom.append($typeBadge);
-        $typeBadge.append($typeBadgeIcon);
         $divRight.append($divRightTop);
-        $divRightTop.append($divRightTopText);
+
         $divRightTop.append($divBtn);
-        $divBtn.append($doMeBtn);
-        $doMeBtn.append($doMeUncheckedIcon);
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
         $divRightTopText.append($author);
         $divRightTopText.append($year);
         $divRightTopText.append($genre);
 
+
+        $divRight.append($divRightBottom);
+
+        $divRightBottom.append($typeBadge);
+        $typeBadge.append($typeBadgeIcon);
+        if (userTodo.todo_user_rating > 3) {
+          $scoreBadge.append($scoreBadgeIcon);
+          $divRightBottom.append($scoreBadge);
+        }
+
+        $divBtn.append($doMeBtn);
+        $doMeBtn.append($doMeUncheckedIcon);
+
         $todoContainer.append($article);
 
         // console.log($article.data("score"));
         $todoContainer
           .find("article")
-          .sort(function(a, b) {
+          .sort(function (a, b) {
             // console.log(a.data("score"));
             // console.log(a.val);
 
@@ -175,7 +189,7 @@ $(document).ready(() => {
       $(".search-form").hide();
       $("div.times").slideToggle("fast");
       $("div.groups").slideToggle("fast");
-      $("div.row.section.submit").slideToggle("fast");
+      $("div.row.submit").slideToggle("fast");
     });
   });
 });
