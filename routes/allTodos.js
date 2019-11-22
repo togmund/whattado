@@ -13,7 +13,6 @@ module.exports = ({ db, axios }) => {
   // Temp Tokens
   const musicAccessToken = 'BQCS6sVWNCjawuMWzFwC85tgHxKAU0u_SZkRPdkYQafmDPGlDHzXZnonIGUV7awu5oDJvbq7zqQIQWU1835hh66YNKYl8SDHy5wgdNRA7lVMs7B8CUZr2KDWHVHkN2YjY-yyCDKpImd-IY7aD5Mnxx1ubIpBj_E';
 
-
   router.get("/", (req, res) => {
 
     // Sanitize
