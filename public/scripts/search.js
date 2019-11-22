@@ -142,20 +142,19 @@ $(document).ready(function () {
         const $divBtn = $('<div>').addClass('right-top-btn');
         // const todoId = todo.todo_id;
 
-        const $doMeBtn = $('<button>').addClass('do-me').click(() => {
+        const $doMeBtn = $('<button>').addClass('do-me btn-large').text('do me').click(() => {
           $.ajax(`/allTodos/new`, {
-            method: "PUT",
-            data: {
-            user_id: req.session.userId,
+            method: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify({
             type_id: 2,
             api_id: todo.volumeInfo.industryIdentifiers[0].identifier,
-            author: todo.volumeInfo.authors,
+            author: todo.volumeInfo.authors[0],
             url: todo.volumeInfo.infoLink,
             name: todo.volumeInfo.title,
             user_rating: todo.volumeInfo.averageRating,
             img: todo.volumeInfo.imageLinks.thumbnail
-            }
-
+            }),
           }).done(() => {
             // console.log('successfully marked as done', userTodo);
           });

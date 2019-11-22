@@ -83,5 +83,40 @@ module.exports = ({ db, axios }) => {
       });
 
   });
+  router.post("/new", (req, res) => {
+
+    // Sanitize
+
+    // DB Query
+    const todoObject = req.body;
+    insertObj(todoObject, `todos`, db);
+    res.send('Yaaay!');
+
+;
+
+    // const values = ['%' +  + '%']
+    // const todoEndpoint = db.query(queryString, values);
+    console.log(req.body);
+
+
+  });
   return router;
 };
+
+function insertObj(obj, table, db) {
+
+  const objArr = Object.entries(obj);
+  const objKeys = objArr.map(e => e[0]);
+  const objVals = objArr.map( (e) => {
+    if (typeof e[1] === 'string') {
+     return `'${e[1]}'`;
+    }
+    return e[1];
+  });
+  return db.query(`INSERT INTO
+  ${table}
+  ( ${objKeys})
+  VALUES ( ${objVals} )
+  ;`);
+
+}
