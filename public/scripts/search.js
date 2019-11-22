@@ -54,13 +54,11 @@ $(document).ready(function() {
           .addClass("do-me btn-large")
           .text("do me")
           .click(() => {
-            $.ajax(`/allTodos/new`, {
+            $.ajax(`/userTodos/${todoId}/add`, {
               method: "POST",
               contentType: "application/json",
               data: JSON.stringify({
                 todoId: todoId
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
@@ -130,16 +128,13 @@ $(document).ready(function() {
               method: "POST",
               contentType: "application/json",
               data: JSON.stringify({
-                user_id: req.session.userId,
                 api_id: todo.imdbID,
                 name: todo.Title,
                 subtype: todo.Type,
                 year: todo.Year,
-                url: `https://imdb.com/title/` + todoId,
+                url: `https://imdb.com/title/` + todo.imdbID,
                 img: todo.Poster,
                 type_id: 1
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
@@ -149,13 +144,17 @@ $(document).ready(function() {
         $divLeft.append($divLeftTop);
         $divLeftTop.append($divLeftImg);
         $divLeft.append($divLeftBottom);
+
         $divLeftBottom.append($divLeftBottomBtn);
+
         $article.append($divRight);
         $divRight.append($divRightBottom);
         $divRight.append($divRightTop);
         $divRightTop.append($divRightTopText);
         $divRightTop.append($divBtn);
+
         $divBtn.append($doMeBtn);
+
         $divRightTop.append($divRightTopText);
         $divRightTopText.append($todoName);
         $divRightTopText.append($author);
@@ -205,6 +204,12 @@ $(document).ready(function() {
           .text(todo.volumeInfo.categories);
         const $divBtn = $("<div>").addClass("right-top-btn");
         // const todoId = todo.todo_id;
+        const apiId = todo.volumeInfo.industryIdentifiers[0].identifier;
+        const bookAuthor = todo.volumeInfo.authors[0];
+        const bookUrl = todo.volumeInfo.infoLink;
+        const bookName = todo.volumeInfo.title;
+        const bookRating = todo.volumeInfo.averageRating;
+        const bookImg = todo.volumeInfo.imageLinks.thumbnail;
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
           .text("do me")
@@ -214,17 +219,25 @@ $(document).ready(function() {
               contentType: "application/json",
               data: JSON.stringify({
                 type_id: 2,
-                api_id: todo.volumeInfo.industryIdentifiers[0].identifier,
-                author: todo.volumeInfo.authors[0],
-                url: todo.volumeInfo.infoLink,
-                name: todo.volumeInfo.title,
-                user_rating: todo.volumeInfo.averageRating,
-                img: todo.volumeInfo.imageLinks.thumbnail
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
+                api_id: apiId,
+                author: bookAuthor,
+                url: bookUrl,
+                name: bookName,
+                user_rating: bookRating,
+                img: bookImg
               })
+            })
+            .done((data) => {
+              console.log('WTF');
+              $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                  todoId: data.rows[0].todo_id
+                })
+              });
             });
-          });
+          })
 
         const $divRightBottom = $("<div>")
           .addClass("right-bottom")
@@ -251,7 +264,7 @@ $(document).ready(function() {
       // Album Card Builder
       for (todo of allTodos[3]) {
         const $todoContainer = $(`.todos.container`);
-
+        console.log(todo.images);
         const $article = $("<article>").addClass(`card horizontal music`);
         if ($(".types button.music").val() === "false") {
           $article.hide();
@@ -290,7 +303,6 @@ $(document).ready(function() {
               method: "POST",
               contentType: "application/json",
               data: JSON.stringify({
-                user_id: req.session.userId,
                 type_id: 3,
                 img: todo.images[0].url,
                 url: todo.external_urls.spotify,
@@ -299,8 +311,6 @@ $(document).ready(function() {
                 year: todo.release_date,
                 sub_type: todo.type,
                 api_id: todo.id
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
@@ -373,7 +383,6 @@ $(document).ready(function() {
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                user_id: req.session.userId,
                 type_id: 3,
                 img: todo.images[0].url,
                 url: todo.external_urls.spotify,
@@ -381,9 +390,6 @@ $(document).ready(function() {
                 name: todo.name,
                 sub_type: todo.type,
                 api_id: todo.id
-
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
@@ -448,7 +454,6 @@ $(document).ready(function() {
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                user_id: req.session.userId,
                 type_id: 3,
                 img: todo.album.images[0].url,
                 url: todo.external_urls.spotify,
@@ -456,8 +461,6 @@ $(document).ready(function() {
                 name: todo.name,
                 sub_type: todo.type,
                 api_id: todo.id
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
@@ -484,6 +487,11 @@ $(document).ready(function() {
 
       // Restaurant API results
       for (todo of allTodos[6]) {
+
+        let rating = ''
+        if (todo.restaurant.user_ratings) {
+          rating = todo.restaurant.user_ratings.aggregate_rating
+        } else { rating = '' }
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(`card horizontal restaurants`);
@@ -523,21 +531,18 @@ $(document).ready(function() {
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                user_id: req.session.userId,
                 api_id: todo.restaurant.id,
                 name: todo.restaurant.name,
                 location: todo.restaurant.location.address,
                 genre: todo.restaurant.cuisines,
                 url: todo.restaurant.url,
                 img: todo.restaurant.thumb,
-                user_rating: todo.restaurant.user_ratings.aggregate_rating,
+                user_rating:rating,
                 type_id: 4
-              }).done(() => {
-                // console.log('successfully marked as done', userTodo);
               })
             });
           });
-        const $divRightBottom = $("<div>").addClass("right-bottom");
+        const $divRightBottom = $("<div>").addClass("right-bottom").text(rating);
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
