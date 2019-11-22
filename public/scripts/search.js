@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // $('.fixed-action-btn').floatingActionButton();
   $("#new-search").on("click", () => {
     $(`.todos.container`).empty();
@@ -120,6 +120,15 @@ $(document).ready(function() {
           .text(todo.Year);
         const $genre = $("<span>").addClass("genre");
         const $divBtn = $("<div>").addClass("right-top-btn");
+
+        const parsedApiId = todo.imdbID
+        const parsedName = todo.Title
+        const parsedSubtype = todo.Type
+        const parsedYear = todo.Year
+        const parsedUrl = `https://imdb.com/title/` + todo.imdbID
+        const parsedImg = todo.Poster
+        const parsedTypeId = 1
+
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
           .text("do me")
@@ -128,16 +137,25 @@ $(document).ready(function() {
               method: "POST",
               contentType: "application/json",
               data: JSON.stringify({
-                api_id: todo.imdbID,
-                name: todo.Title,
-                subtype: todo.Type,
-                year: todo.Year,
-                url: `https://imdb.com/title/` + todo.imdbID,
-                img: todo.Poster,
-                type_id: 1
+                api_id: parsedApiId,
+                name: parsedName,
+                subtype: parsedSubtype,
+                year: parsedYear,
+                url: parsedUrl,
+                img: parsedImg,
+                type_id: parsedTypeId
               })
+            }).done((data) => {
+              $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                  todoId: data.rows[0].todo_id
+                })
+              });
             });
           });
+
         const $divRightBottom = $("<div>").addClass("right-bottom");
 
         $article.append($divLeft);
@@ -173,10 +191,12 @@ $(document).ready(function() {
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         let $divLeftImg = $("<img>").addClass("image circle");
+        let bookImg = "";
         if (todo.volumeInfo.imageLinks) {
           $divLeftImg = $("<img>")
             .addClass("image circle")
             .attr("src", todo.volumeInfo.imageLinks.thumbnail);
+            let bookImg = todo.volumeInfo.imageLinks.thumbnail;
         } else {
           $divLeftImg = $("<img>")
             .addClass("image circle")
@@ -203,13 +223,14 @@ $(document).ready(function() {
           .addClass("genre")
           .text(todo.volumeInfo.categories);
         const $divBtn = $("<div>").addClass("right-top-btn");
-        // const todoId = todo.todo_id;
+
+
         const apiId = todo.volumeInfo.industryIdentifiers[0].identifier;
         const bookAuthor = todo.volumeInfo.authors[0];
         const bookUrl = todo.volumeInfo.infoLink;
         const bookName = todo.volumeInfo.title;
         const bookRating = todo.volumeInfo.averageRating;
-        const bookImg = todo.volumeInfo.imageLinks.thumbnail;
+
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
           .text("do me")
@@ -227,16 +248,16 @@ $(document).ready(function() {
                 img: bookImg
               })
             })
-            .done((data) => {
-              console.log('WTF');
-              $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
-                method: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({
-                  todoId: data.rows[0].todo_id
-                })
+              .done((data) => {
+
+                $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
+                  method: "POST",
+                  contentType: "application/json",
+                  data: JSON.stringify({
+                    todoId: data.rows[0].todo_id
+                  })
+                });
               });
-            });
           })
 
         const $divRightBottom = $("<div>")
@@ -264,7 +285,6 @@ $(document).ready(function() {
       // Album Card Builder
       for (todo of allTodos[3]) {
         const $todoContainer = $(`.todos.container`);
-        console.log(todo.images);
         const $article = $("<article>").addClass(`card horizontal music`);
         if ($(".types button.music").val() === "false") {
           $article.hide();
@@ -292,9 +312,19 @@ $(document).ready(function() {
           .addClass("year")
           .text(todo.release_date);
         const $subType = $("<span>")
-          .addClass("sub_type")
+          .addClass("subtype")
           .text(todo.type);
         const $divBtn = $("<div>").addClass("right-top-btn");
+
+        const ____type_id = 3;
+        const ____img = todo.images[0].url;
+        const ____url = todo.external_urls.spotify;
+        const ____name = todo.name;
+        const ____author = todo.artists[0].name;
+        const ____year = todo.release_date;
+        const ____sub_type = todo.type;
+        const ____api_id = todo.i;
+
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
           .text("do me")
@@ -303,15 +333,23 @@ $(document).ready(function() {
               method: "POST",
               contentType: "application/json",
               data: JSON.stringify({
-                type_id: 3,
-                img: todo.images[0].url,
-                url: todo.external_urls.spotify,
-                name: todo.name,
-                author: todo.artists[0].name,
-                year: todo.release_date,
-                sub_type: todo.type,
-                api_id: todo.id
+                type_id: ____type_id,
+                img: ____img,
+                url: ____url,
+                name: ____name,
+                author: ____author,
+                year: ____year,
+                subtype: ____sub_type,
+                api_id: ____api_id
               })
+            }).done((data) => {
+              $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                  todoId: data.rows[0].todo_id
+                })
+              });
             });
           });
         const $divRightBottom = $("<div>").addClass("right-bottom");
@@ -346,10 +384,12 @@ $(document).ready(function() {
         const $divLeft = $(`<div>`).addClass(`left`);
         const $divLeftTop = $(`<div>`).addClass(`left-top`);
         let $divLeftImg = $("<img>").addClass("image circle");
+        let ___img;
         if (todo.images.length !== 0) {
           $divLeftImg = $("<img>")
             .addClass("image circle")
             .attr("src", todo.images[0].url);
+            let ___img = todo.images[0].url;
         } else {
           $divLeftImg = $("<img>")
             .addClass("image circle")
@@ -375,21 +415,30 @@ $(document).ready(function() {
           .text(todo.genres[0]);
 
         const $divBtn = $("<div>").addClass("right-top-btn");
+
+        const ___type_i = 3;
+
+        const ___url = todo.external_urls.spotify;
+        const ___user_rating = todo.popularity;
+        const ___name = todo.name;
+        const ___sub_type = todo.type;
+        const ___api_id = todo.id;
+
         const $doMeBtn = $("<button>")
-        .addClass("do-me btn-large")
-        .text("do me")
-        .click(() => {
-          $.ajax(`/allTodos/new`, {
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                type_id: 3,
-                img: todo.images[0].url,
-                url: todo.external_urls.spotify,
-                user_rating: todo.popularity,
-                name: todo.name,
-                sub_type: todo.type,
-                api_id: todo.id
+          .addClass("do-me btn-large")
+          .text("do me")
+          .click(() => {
+            $.ajax(`/allTodos/new`, {
+              method: "POST",
+              contentType: "application/json",
+              data: JSON.stringify({
+                type_id: ___type_i,
+                img: ___img,
+                url: ___url,
+                user_rating: ___user_rating,
+                name: ___name,
+                subtype: ___sub_type,
+                api_id: ___api_id
               })
             });
           });
@@ -417,7 +466,6 @@ $(document).ready(function() {
 
       // Track Card Builder
       for (todo of allTodos[5]) {
-        console.log(todo);
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(`card horizontal music`);
@@ -446,22 +494,39 @@ $(document).ready(function() {
           .text(todo.type);
 
         const $divBtn = $("<div>").addClass("right-top-btn");
+
+        const __type_id = 3;
+        const __img = todo.album.images[0].url;
+        const __url = todo.external_urls.spotify;
+        const __user_rating = todo.popularity;
+        const __name = todo.name;
+        const __sub_type = todo.type;
+        const __api_id = todo.id;
+
         const $doMeBtn = $("<button>")
-        .addClass("do-me btn-large")
-        .text("do me")
-        .click(() => {
-          $.ajax(`/allTodos/new`, {
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                type_id: 3,
-                img: todo.album.images[0].url,
-                url: todo.external_urls.spotify,
-                user_rating: todo.popularity,
-                name: todo.name,
-                sub_type: todo.type,
-                api_id: todo.id
+          .addClass("do-me btn-large")
+          .text("do me")
+          .click(() => {
+            $.ajax(`/allTodos/new`, {
+              method: "POST",
+              contentType: "application/json",
+              data: JSON.stringify({
+                type_id: __type_id,
+                img: __img,
+                url: __url,
+                user_rating: __user_rating,
+                name: __name,
+                subtype: __sub_type,
+                api_id: __api_id
               })
+            }).done((data) => {
+              $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                  todoId: data.rows[0].todo_id
+                })
+              });
             });
           });
         const $divRightBottom = $("<div>")
@@ -523,23 +588,41 @@ $(document).ready(function() {
           .addClass("genre")
           .text(todo.restaurant.cuisines);
         const $divBtn = $("<div>").addClass("right-top-btn");
+
+        const _parsed_api_id = todo.restaurant.id;
+        const _parsed_name = todo.restaurant.name;
+        const _parsed_location = todo.restaurant.location.address;
+        const _parsed_genre = todo.restaurant.cuisines;
+        const _parsed_url = todo.restaurant.url;
+        const _parsed_img = todo.restaurant.thumb;
+        const _parsed_user_rating = rating;
+        const _parsed_type_id = 4;
+
         const $doMeBtn = $("<button>")
-        .addClass("do-me btn-large")
-        .text("do me")
-        .click(() => {
-          $.ajax(`/allTodos/new`, {
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                api_id: todo.restaurant.id,
-                name: todo.restaurant.name,
-                location: todo.restaurant.location.address,
-                genre: todo.restaurant.cuisines,
-                url: todo.restaurant.url,
-                img: todo.restaurant.thumb,
-                user_rating:rating,
-                type_id: 4
+          .addClass("do-me btn-large")
+          .text("do me")
+          .click(() => {
+            $.ajax(`/allTodos/new`, {
+              method: "POST",
+              contentType: "application/json",
+              data: JSON.stringify({
+                api_id: _parsed_api_id,
+                name: _parsed_name,
+                location: _parsed_location,
+                genre: _parsed_genre,
+                url: _parsed_url,
+                img: _parsed_img,
+                user_rating: _parsed_user_rating,
+                type_id: _parsed_type_id
               })
+            }).done((data) => {
+              $.ajax(`/userTodos/${data.rows[0].todo_id}/add`, {
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                  todoId: data.rows[0].todo_id
+                })
+              });
             });
           });
         const $divRightBottom = $("<div>").addClass("right-bottom").text(rating);

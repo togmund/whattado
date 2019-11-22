@@ -34,7 +34,7 @@ module.exports = ({db, axios}) => {
           u_t.user_todo_id AS user_todo_id,
           u_t.done         AS done,
           u_t.done_count   AS done_count,
-          u_t.user_id      AS user_id,
+          u_t.user_id      AS user_id
 
     FROM user_todos u_t
     JOIN todos td ON td.todo_id = u_t.todo_id
