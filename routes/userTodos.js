@@ -40,6 +40,7 @@ module.exports = ({db, axios}) => {
     JOIN todos td ON td.todo_id = u_t.todo_id
     JOIN types t ON t.type_id = td.type_id
     AND u_t.user_id = $1
+    AND done = FALSE
     ;`
     const injectionProtection = [req.session.userId]
     db.query(queryFormat, injectionProtection)
