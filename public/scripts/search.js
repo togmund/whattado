@@ -37,7 +37,13 @@ $(document).ready(function() {
           .addClass("image")
           .attr("src", todo.todo_img);
         const $divLeftBottom = $(`<div>`).addClass(`left-bottom`);
-        const $divLeftBottomBtn = $(`<button>`).addClass(`url`);
+        const $divLeftBottomBtn = $(`<a>`)
+        .addClass(`url`)
+          .attr({
+            href: todo.todo_url,
+            target: "_blank"
+          })
+          .text(todo.type_name + ' link');;
 
         const $divRight = $(`<div>`).addClass(`right`);
         const $divRightTop = $(`<div>`).addClass(`right-top`);
@@ -45,16 +51,16 @@ $(document).ready(function() {
         const $todoName = $(`<div>`)
           .addClass(`todo-name`)
           .text(todo.todo_name);
-        const $author = $("<span>").addClass("author");
-        const $year = $("<span>").addClass("year");
-        const $genre = $("<span>").addClass("genre");
+        const $author = $("<span>").addClass("author").text(todo.author);
+        const $year = $("<span>").addClass("year").text(todo.year);
+        const $genre = $("<span>").addClass("genre").text(todo.genre);
         const $divBtn = $("<div>").addClass("right-top-btn");
         const todoId = todo.todo_id;
         const $doMeBtn = $("<button>")
           .addClass("do-me btn-large")
           .text("do me")
           .click(() => {
-            $.ajax(`/allTodos/new`, {
+            $.ajax(`/userTodos/new`, {
               method: "POST",
               contentType: "application/json",
               data: JSON.stringify({
@@ -64,7 +70,7 @@ $(document).ready(function() {
               })
             });
           });
-        const $divRightBottom = $("<div>").addClass("right-bottom");
+        const $divRightBottom = $("<div>").addClass("right-bottom").text(todo.todo_user_rating);
 
         $article.append($divLeft);
         $divLeft.append($divLeftTop);
