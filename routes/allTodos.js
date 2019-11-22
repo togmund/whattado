@@ -74,12 +74,6 @@ module.exports = ({ db, axios }) => {
   router.post("/new", (req, res) => {
     const todoObject = req.body;
     insertObj(todoObject, `todos`, db).then ((data) => {
-<<<<<<< HEAD
-=======
-      // const userID = req.session.user_id;
-      // console.log('====================')
-      // console.log(data);
->>>>>>> 1d4722f4a6ed667383e53bb6712021bd19c476ef
       res.json(data);
     })
   })
@@ -96,10 +90,6 @@ function insertObj(obj, table, db) {
     }
     return e[1];
   });
-<<<<<<< HEAD
-=======
-  // console.log(objArr);
->>>>>>> 1d4722f4a6ed667383e53bb6712021bd19c476ef
   return db.query(`INSERT INTO
   ${table}
   ( ${objKeys})

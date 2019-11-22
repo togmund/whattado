@@ -15,13 +15,7 @@ $(document).ready(() => {
     const group = $(this).find(".group").val();
     const family = $(this).find(".family").val();
 
-    // const movies = $(this).find(".movies").val();
-    // const books = $(this).find(".books").val();
-    // const music = $(this).find(".music").val();
-    // const restaurants = $(this).find(".restaurants").val();
-
     const $formValues = {oneHour, threeHours, halfDay, allDay, solo, duo, group, family};
-    const todotypes = {movies, books, music, restaurants};
 
     const scoreMatrix = function (toggles, todo) {
       const filterScores = {
@@ -81,10 +75,6 @@ $(document).ready(() => {
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
-<<<<<<< HEAD
-=======
-        // console.log(userTodo);
->>>>>>> 1d4722f4a6ed667383e53bb6712021bd19c476ef
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
@@ -134,8 +124,8 @@ $(document).ready(() => {
                 .addClass("pink darken-3")
               .children()
                 .removeClass("pink-text text-darken-3")
-                .text(check_box);
-              setTimeout(() => {$article.hide("fast")},2000);
+                .text("check_box");
+              setTimeout(() => {$article.hide("fast")},1500);
             });
           });
         const $doMeUncheckedIcon = $("<i>").addClass("material-icons pink-text text-darken-3").text(`check_box_outline_blank`);
