@@ -15,12 +15,65 @@ $(document).ready(() => {
     const group = $(this).find(".group").val();
     const family = $(this).find(".family").val();
 
-    const movies = $(this).find(".movies").val();
-    const books = $(this).find(".books").val();
-    const music = $(this).find(".music").val();
-    const restaurants = $(this).find(".restaurants").val();
+    // const movies = $(this).find(".movies").val();
+    // const books = $(this).find(".books").val();
+    // const music = $(this).find(".music").val();
+    // const restaurants = $(this).find(".restaurants").val();
 
-    const $formValues = { oneHour, threeHours, halfDay, allDay, solo, duo, group, family, movies, books, music, restaurants };
+    const $formValues = {oneHour, threeHours, halfDay, allDay, solo, duo, group, family};
+    const todotypes = {movies, books, music, restaurants};
+
+    const scoreMatrix = function (toggles, todo) {
+      const filterScores = {
+        oneHourmovies: -5,
+        oneHourbooks: 2,
+        oneHourmusic: 5,
+        oneHoursestaurants: 2,
+        threeHoursmovies: 5,
+        threeHoursbooks: 2,
+        threeHoursmusic: 3,
+        threeHoursrestaurants: 2,
+        sixHoursmovies: 2,
+        sixHoursbooks: 1,
+        sixHoursrestaurants: 1,
+        oneDaymovies: 2,
+        oneDaysbooks: 1,
+        oneDaymusic: 1,
+        oneDayrestaurants: 1,
+
+        solomovies: 1,
+        solomooks: 5,
+        solomusic: 5,
+        solorestaurants: 1,
+        duomovies: 2,
+        duobooks: -5,
+        duomusic: 1,
+        duorestaurants: 5,
+        groupmovies: 2,
+        groupbooks: -5,
+        groupmusic: -2,
+        grouprestaurants: 5,
+        familymovies: -2,
+        familybooks: 2,
+        familymusic: -2,
+        familyrestaurants: 2
+      }
+      let toggledRes = [];
+      for (const toggle in toggles) {
+        if(toggles[toggle]) {
+          toggledRes.push(toggle);
+        }
+      }
+      const scoreOne = filterScores[toggledRes[0] + todo];
+      const scoreTwo = filterScores[toggledRes[1] + todo];
+
+      return finalScore = scoreOne + scoreTwo;
+      //loop through form values and retreive keys with the value of true
+      //Using those two criteria we calculate the score in relation to todo.type_id
+      //return a number and assign the number as a class to the article container
+      //we'll sort the containers based on the scores
+      //we'll hide the ones with the lowest score
+    }
 
     $.ajax("/userTodos",{
       method: "GET",
@@ -28,6 +81,10 @@ $(document).ready(() => {
     }).done((userTodos) => {
       $("#todo-spinner").hide();
       for (const userTodo of userTodos) {
+<<<<<<< HEAD
+=======
+        // console.log(userTodo);
+>>>>>>> 1d4722f4a6ed667383e53bb6712021bd19c476ef
         const $todoContainer = $(`.todos.container`);
 
         const $article = $("<article>").addClass(
