@@ -3,9 +3,9 @@ CREATE TABLE "user_todos" (
   "user_todo_id" SERIAL PRIMARY KEY NOT NULL,
   "user_id" INTEGER,
   "todo_id" INTEGER,
-  "done" BOOLEAN NOT NULL,
+  "done" BOOLEAN DEFAULT FALSE,
   "rating" INTEGER,
-  "done_count" SERIAL NOT NULL
+  "done_count" INTEGER DEFAULT 0
 );
 
 ALTER TABLE "user_todos" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");

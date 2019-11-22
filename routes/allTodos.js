@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = ({ db, axios }) => {
 
   // Temp Tokens
-  const musicAccessToken = 'BQCZsmNnWHS30fXFtNhW3Tpkpl-JXKOv2ErR6RKKWq0LLVGqPsUueHmiZCypRrTIIcvoQOaSSIabNbbVsTlnjg-eeaPGOAwESQer9eT2KSa_fquzOtOhPq7AYZj8hX1jQVvWa8Yg7PW0fvzoJAHKPMEZl4ZVto4'
+  const musicAccessToken = 'BQDaSUIr7Jbm2uOhbfGadZduq3EaTwyiD7L8m2iH80aeWBW8zXDPzSgZNKBHvnmBkx_pCVRF4zkKtOlJ-iOGWJmbu1-jf59YuS_ZqBqjLnO9DopOnVAsy0LhsZxJxgk9LfbCsYEqRbpyakNfvlNSSn1G2rM6dT0';
 
   router.get("/", (req, res) => {
 
@@ -72,39 +72,34 @@ module.exports = ({ db, axios }) => {
 
   });
   router.post("/new", (req, res) => {
-
-    // Sanitize
-
-    // DB Query
     const todoObject = req.body;
-    insertObj(todoObject, `todos`, db);
-    res.send('Yaaay!');
+    insertObj(todoObject, `todos`, db).then ((data) => {
+      // const userID = req.session.user_id;
+      console.log('====================')
+      console.log(data);
+      res.json(data);
+    })
+    // console.log(req.body);
 
-;
+  })
 
-    // const values = ['%' +  + '%']
-    // const todoEndpoint = db.query(queryString, values);
-    console.log(req.body);
-
-
-  });
   return router;
 };
 
 function insertObj(obj, table, db) {
-
   const objArr = Object.entries(obj);
   const objKeys = objArr.map(e => e[0]);
-  const objVals = objArr.map( (e) => {
-    if (typeof e[1] === 'string') {
-     return `'${e[1]}'`;
+  const objVals = objArr.map((e) => {
+    if(typeof e[1] === 'string') {
+      return `'${e[1]}'`;
     }
     return e[1];
   });
+  console.log(objArr);
   return db.query(`INSERT INTO
   ${table}
   ( ${objKeys})
   VALUES ( ${objVals} )
-  ;`);
+  RETURNING todo_id;`);
 
 }
