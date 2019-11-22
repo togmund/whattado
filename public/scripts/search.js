@@ -5,13 +5,13 @@ $(document).ready(function () {
     $(".search-form").slideToggle("fast");
     $("div.times").slideToggle("fast");
     $("div.groups").slideToggle("fast");
-    $("div.row.section.submit").slideToggle("fast");
+    $("div.row.submit").slideToggle("fast");
   });
   $(".search-form").submit(() => {
     event.preventDefault();
     $("div.times").slideUp("fast");
     $("div.groups").slideUp("fast");
-    $("div.row.section.submit").slideUp("fast");
+    $("div.row.submit").slideUp("fast");
     $(`.todos.container`).empty();
     $("#todo-spinner").show();
     $search = $(".search-form input").val();
