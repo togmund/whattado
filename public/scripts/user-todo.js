@@ -179,8 +179,6 @@ $(document).ready(() => {
         $todoContainer
           .find("article")
           .sort(function (a, b) {
-            // console.log(a.data("score"));
-            // console.log(a.val);
 
             return b.dataset.score - a.dataset.score;
           })
