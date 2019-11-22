@@ -75,8 +75,8 @@ module.exports = ({ db, axios }) => {
     const todoObject = req.body;
     insertObj(todoObject, `todos`, db).then ((data) => {
       // const userID = req.session.user_id;
-      console.log('====================')
-      console.log(data);
+      // console.log('====================')
+      // console.log(data);
       res.json(data);
     })
     // console.log(req.body);
@@ -95,7 +95,7 @@ function insertObj(obj, table, db) {
     }
     return e[1];
   });
-  console.log(objArr);
+  // console.log(objArr);
   return db.query(`INSERT INTO
   ${table}
   ( ${objKeys})

@@ -55,19 +55,21 @@ ALTER TABLE "users" ADD FOREIGN KEY ("group_id") REFERENCES "groups" ("group_id"
 
 ALTER TABLE "users" ADD FOREIGN KEY ("time_id") REFERENCES "times" ("time_id");
 
+
 DROP TABLE IF EXISTS user_todos CASCADE;
 CREATE TABLE "user_todos" (
   "user_todo_id" SERIAL PRIMARY KEY NOT NULL,
   "user_id" INTEGER,
   "todo_id" INTEGER,
-  "done" BOOLEAN NOT NULL,
+  "done" BOOLEAN DEFAULT FALSE,
   "rating" INTEGER,
-  "done_count" SERIAL NOT NULL
+  "done_count" INTEGER DEFAULT 0
 );
 
 ALTER TABLE "user_todos" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("user_id");
 
 ALTER TABLE "user_todos" ADD FOREIGN KEY ("todo_id") REFERENCES "todos" ("todo_id");
+
 
 INSERT INTO types (name, img, color, color_accent, api_endpoint) VALUES ('movies', 'movie_filter', 'red', 'accent-4', 'something');
 
