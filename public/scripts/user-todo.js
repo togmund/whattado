@@ -64,11 +64,6 @@ $(document).ready(() => {
       const scoreTwo = filterScores[toggledRes[1] + todo];
       return finalScore = parseInt(scoreOne) + parseInt(scoreTwo) + Math.random();
 
-      //loop through form values and retreive keys with the value of true
-      //Using those two criteria we calculate the score in relation to todo.type_id
-      //return a number and assign the number as a class to the article container
-      //we'll sort the containers based on the scores
-      //we'll hide the ones with the lowest score
     }
 
     $.ajax("/userTodos", {
