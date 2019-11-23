@@ -63,7 +63,6 @@ $(document).ready(() => {
       const scoreOne = filterScores[`${toggledRes[0]}${todo}`];
       const scoreTwo = filterScores[toggledRes[1] + todo];
       return finalScore = parseInt(scoreOne) + parseInt(scoreTwo) + Math.random();
-
     }
 
     $.ajax("/userTodos", {

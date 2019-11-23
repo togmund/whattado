@@ -112,4 +112,5 @@ function insertObj(obj, table, db) {
   ( ${objKeys})
   VALUES ( ${objVals} )
   RETURNING todo_id;`);
+
 }
