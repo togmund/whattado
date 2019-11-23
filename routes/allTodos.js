@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = ({ db, axios }) => {
 
   // Temp Tokens
-  const musicAccessToken = 'BQDGtn6i6T7re3Df3ConVWIR8UnDbbNwc55dT_ArXVvkAKQRClK180hK8Y_LlXXGOELQiRFenNdsN_LyDWMWqKd1wrrSuzRhTZzHAIzG3fWPJyCu8pxnYyZKDuQyUwhyD8_VbUCqsvCYNiBaR623eoPh00Qn6nQ';
+  const musicAccessToken = 'BQBQhlUTLrkdCYxhxrJhLTcIqLnnxbZjA8m1uHecnFP36YSFa3yC8v8rzpkFDnnXmRxnsqZHQrbxPrJupgxRizx6ps0MooLr2sAZpXOUqHns9gv90oaV3nkJ8X3v1xdDjTZjpK2r3rWf';
 
   router.get("/", (req, res) => {
 
@@ -112,4 +112,5 @@ function insertObj(obj, table, db) {
   ( ${objKeys})
   VALUES ( ${objVals} )
   RETURNING todo_id;`);
+
 }
